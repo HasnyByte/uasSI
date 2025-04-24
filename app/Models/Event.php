@@ -9,16 +9,19 @@ class Event extends Model
 {
     use HasFactory;
 
+    public $incrementing = false;
+    protected $keyType = 'string';
     protected $table = 'events';
-
     protected $primaryKey = 'id_event';
 
     protected $fillable = [
+        'id_event',
         'nama_event',
-        'deskripsi_event',
         'flyer_event',
+        'tanggal_event',
         'lokasi_event',
         'harga_tiket',
+        'location_id',
         'id_admin',
     ];
 

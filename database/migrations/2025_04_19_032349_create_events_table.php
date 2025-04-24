@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('nama_event');
             // $table->text('deskripsi_event');
             $table->string('flyer_event');
+            $table->string('tanggal_event')->nullable();
             $table->string('lokasi_event');
             $table->string('harga_tiket');
             $table->string('location_id');

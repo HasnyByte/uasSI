@@ -3,13 +3,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Api\UsersController;
-use App\Http\Controllers\Api\AdminController;
-use App\Http\Controllers\Api\DestinasiWisataController;
-use App\Http\Controllers\Api\KulinerController;
-use App\Http\Controllers\Api\EventController;
-use App\Http\Controllers\Api\ReviewController;
-use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DestinasiWisataController;
+use App\Http\Controllers\KulinerController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AuthController;
 
 Route::post('/register', [UsersController::class, 'register']);
 Route::post('/login', [UsersController::class, 'login']);
@@ -17,6 +17,8 @@ Route::post('/logout', [UsersController::class, 'logout'])->middleware('auth:san
 
 Route::post('/admin/login', [AdminController::class, 'login']);
 Route::post('/admin/logout', [AdminController::class, 'logout'])->middleware('auth:sanctum');
+
+Route::get('/admin/event', [EventController::class, 'index'])->name('admin.event.index');
 
 Route::get('/destinasi', [DestinasiWisataController::class, 'index']);
 Route::get('/destinasi/{id}', [DestinasiWisataController::class, 'show']);

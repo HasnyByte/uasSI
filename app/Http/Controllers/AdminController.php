@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Event;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -31,6 +34,17 @@ class AdminController extends Controller
             'message' => 'Login berhasil',
             'token' => $token
         ]);
+    }
+
+    public function dashboard()
+    {
+        // $totalPengguna = User::count();
+        // $totalEvent = Event::whereDate('tanggal_event', '>=', Carbon::now())->count();
+
+        $totalPengguna = User::count();
+        $totalEvent = Event::count();
+
+        return view('admin.dashboard', compact('totalPengguna', 'totalEvent'));
     }
 
     // Proses logout admin (jika pakai Sanctum/token)

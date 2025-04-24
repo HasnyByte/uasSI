@@ -32,14 +32,14 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white text-gray-700 text-sm">
-                    {{-- @foreach ($pengguna as $user) --}}
-                    <tr class="border-b">
-                        <td class="px-6 py-3">#00001</td>
-                        <td class="px-6 py-3">Khalishadz</td>
-                        <td class="px-6 py-3">khalishadz@gmail.com</td>
-                        <td class="px-6 py-3">01 - 04 - 2025</td>
-                    </tr>
-                    {{-- @endforeach --}}
+                        @foreach ($pengguna as $user)
+                            <tr class="border-b">
+                                <td class="px-6 py-3">{{ $user->id_user }}</td>
+                                <td class="px-6 py-3">{{ $user->nama_user }}</td>
+                                <td class="px-6 py-3">{{ $user->email_user }}</td>
+                                <td class="px-6 py-3">{{ \Carbon\Carbon::parse($user->created_at)->format('d - m - Y') }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

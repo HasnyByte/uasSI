@@ -11,7 +11,7 @@
             <a href="{{ route('pengguna') }}" class="flex items-center gap-2 px-4 py-2 hover:bg-[#777E90]/70 rounded-md">
                 <span class="material-icons">group</span> Pengguna
             </a>
-            <a href="{{ route('event') }}" class="flex items-center gap-2 px-4 py-2 hover:bg-[#777E90]/70 rounded-md">
+            <a href="{{ route('admin.event.index') }}" class="flex items-center gap-2 px-4 py-2 hover:bg-[#777E90]/70 rounded-md">
                 <span class="material-icons">event</span> Event
             </a>
             <a href="{{ route('review') }}" class="flex items-center gap-2 px-4 py-2 hover:bg-[#777E90]/70 rounded-md">

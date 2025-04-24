@@ -55,6 +55,12 @@ class UsersController extends Controller
         ]);
     }
 
+    public function index()
+    {
+        $pengguna = User::all(); // ambil semua data dari tabel users
+        return view('admin.pengguna', compact('pengguna'));
+    }
+
     // Logout
     public function logout(Request $request)
     {
