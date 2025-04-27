@@ -9,11 +9,11 @@
 
 </head>
 <body class="bg-[#F9F9F9] font-sans">
-    <main class="flex-1">
-        @include('components.usersnavbar')
-        <div class="p-6">
-            @yield('content')
-        </div>
-    </main>
+<main class="flex-1">
+    @include('components.navbar')
+    <div class="p-6">
+        @yield('content')
+    </div>
+</main>
 </body>
 </html>
