@@ -23,3 +23,9 @@ Route::post('/adminEvent', [EventController::class, 'store'])->name('admin.event
 Route::get('/adminReview', function () {
     return view('admin.review');
 })->name('review');
+
+
+//untuk coba halaman users
+Route::get('/', function () {
+    return view('users.home');;
+});
