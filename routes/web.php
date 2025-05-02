@@ -26,9 +26,26 @@ Route::get('/adminReview', function () {
 
 
 //untuk coba halaman users
-Route::get('/', function () {
-    return view('users.home');;
-});
+// Home
+Route::get('/home', function () {
+    return view('users.home');
+})->name('home');
+
+// Wisata
+Route::get('/wisata', function () {
+    return view('users.wisata');
+})->name('wisata');
+
+// Kuliner
+Route::get('/kuliner', function () {
+    return view('users.kuliner');
+})->name('kuliner');
+
+// Event
+Route::get('/event', function () {
+    return view('users.event');
+})->name('event');
+
 
 //masi gapaham sih sama ini
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');

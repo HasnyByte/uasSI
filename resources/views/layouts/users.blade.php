@@ -6,12 +6,12 @@
     <title>Admin Dashboard</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @vite('resources/css/app.css')
-
 </head>
+
 <body class="bg-[#F9F9F9] font-sans">
 <main class="flex-1">
     @include('components.navbar')
-    <div class="p-6">
+    <div>
         @yield('content')
     </div>
 </main>
