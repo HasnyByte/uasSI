@@ -21,7 +21,7 @@
                 <!-- Judul -->
                 <div class="w-full lg:w-3/12">
                     <div class="font-bold text-lg">
-                        Wisata
+                        Interesting Destination
                     </div>
                 </div>
 
