@@ -27,20 +27,11 @@
 
                 <!-- Search Bar -->
                 <div class="w-full lg:w-9/12">
-                    <div class="flex flex-col lg:flex-row items-center gap-4">
-                        <div class="lg:w-7/12"></div>
-
-                        <div class="w-full lg:w-5/12">
+                    <div class="flex flex-col lg:flex-row items-center justify-end gap-4">
+                        <div class="w-fit max-w-sm ml-auto">
                             <div class="flex rounded-[12px] shadow-sm overflow-hidden">
-                                <input
-                                    type="text"
-                                    placeholder="Type"
-                                    class="flex-1 px-4 py-2 border border-gray-300 rounded-l-[12px] focus:outline-none focus:ring-2 focus:ring-[#2A933C]"
-                                />
-                                <button
-                                    type="button"
-                                    class="bg-[#2A933C] text-white px-4 py-2 font-medium text-sm rounded-r-[12px] hover:bg-green-700 transition"
-                                >
+                                <input type="text" placeholder="Type" class="px-4 py-2 border border-gray-300 rounded-l-[12px] focus:outline-none focus:ring-2 focus:ring-[#2A933C]"/>
+                                <button type="button" class="bg-[#2A933C] text-white px-4 py-2 font-medium text-sm rounded-r-[12px] hover:bg-green-700 transition">
                                     Search
                                 </button>
                             </div>
@@ -81,21 +72,21 @@
                 <!-- Content Grid -->
                 <div class="w-full lg:w-9/12">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="rounded-lg overflow-hidden bg-white shadow-md">
-                            <div class="h-48 bg-cover bg-center" style="background-image: url('{{asset('images/wisatae.jpg')}}');">
-                            </div>
-                            <div class="p-4">
-                                <h3 class="font-semibold text-lg">Masjid Raya Baiturrahman</h3>
-                                <div class="mt-4">
-                                    <a href="#" class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-[#2A933C] transition">
-                                        Visit
-                                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
-                                        </svg>
-                                    </a>
+                        <a href="/detail-halaman" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
+                            <!-- Gambar -->
+                            <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{asset('images/wisatae.jpg')}}');"></div>
+
+                            <!-- Overlay dan teks -->
+                            <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
+                                <h3 class="font-semibold text-lg text-white">Masjid Raya Baiturrahman</h3>
+                                <div class="mt-2 inline-flex items-center text-sm font-medium text-white transition">
+                                    Visit
+                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                                    </svg>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <!-- Pagination -->
