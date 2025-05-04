@@ -44,7 +44,7 @@
     </div>
     <div class="flex justify-between items-center mb-6 py-0">
         <h3 class="text-2xl font-bold text-green-600">Destinasi Populer</h3>
-        <a href="#" class="text-green-600 flex items-center">
+        <a href="{{ route('wisata') }}" class="text-green-600 flex items-center">
             Lihat semua
             <img src="{{ asset('images/right-line.svg') }}" alt="See All" class="ml-1 w-4 h-4">
         </a>
@@ -149,7 +149,7 @@
     </div>
     <div class="flex justify-between items-center mb-6">
         <h3 class="text-2xl font-bold text-green-600">Rekomendasi Kuliner</h3>
-        <a href="#" class="text-green-600 flex items-center">
+        <a href="{{ route('kuliner') }} class="text-green-600 flex items-center">
             Lihat semua
             <img src="{{ asset('images/right-line.svg') }}" alt="See All" class="ml-1 w-6 h-6">
         </a>
@@ -303,7 +303,7 @@
 </div>
 
 <footer class="bg-green-600 text-white">
-  <div class="w-full px-12 py-12 grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
+  <div class="w-full px-12 py-12 grid grid-cols-1 ml-40 md:grid-cols-3 gap-10 text-left">
         <!-- Kontak Kami -->
         <div>
             <h4 class="text-lg font-semibold mb-4">Kontak Kami</h4>
