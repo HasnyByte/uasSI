@@ -49,7 +49,7 @@
             <img src="{{ asset('images/right-line.svg') }}" alt="See All" class="ml-1 w-4 h-4">
         </a>
     </div>
-    
+
     <div class="relative">
         <div class="overflow-x-scroll pb-6 -mx-8 px-15 scroll-smooth scrollbar-hide" id="destination-scroll">
             <div class="flex space-x-6 scroll-snap-x">
@@ -149,12 +149,12 @@
     </div>
     <div class="flex justify-between items-center mb-6">
         <h3 class="text-2xl font-bold text-green-600">Rekomendasi Kuliner</h3>
-        <a href="{{ route('kuliner') }} class="text-green-600 flex items-center">
+        <a href="{{ route('kuliner') }}" class="text-green-600 flex items-center">
             Lihat semua
             <img src="{{ asset('images/right-line.svg') }}" alt="See All" class="ml-1 w-6 h-6">
         </a>
     </div>
-    
+
     <div class="relative">
         <div class="overflow-x-scroll pb-6 -mx-8 px-15 scroll-smooth scrollbar-hide" id="culinary-scroll">
             <div class="flex space-x-6 scroll-snap-x">
@@ -302,50 +302,7 @@
 </div>
 </div>
 
-<footer class="bg-[#2A933C] text-white">
-  <div class="w-full px-12 py-12 grid grid-cols-1 ml-40 md:grid-cols-3 gap-10 text-left">
-        <!-- Kontak Kami -->
-        <div>
-            <h4 class="text-lg font-semibold mb-4">Kontak Kami</h4>
-            <p class="text-white/80 mb-1">jelajahaceh@gmail.com</p>
-            <p class="text-white/80 mb-1">+62-8234-6789-0562</p>
-            <p class="text-white/80 mb-4">Aceh, Indonesia</p>
-            <div class="flex items-center justify-center md:justify-start text-white/80 space-x-1">
-                <img src="{{ asset('images/globe.svg') }}" alt="Language" class="w-5 h-5">
-                <span>Indonesia</span>
-                <img src="{{ asset('images/drop-icon.svg') }}" alt="Dropdown" class="w-4 h-4">
-            </div>
-        </div>
-
-        <!-- Layanan -->
-        <div>
-            <h4 class="text-lg font-semibold mb-4">Layanan</h4>
-            <ul class="space-y-2 text-white/80">
-                <li><a href="{{ route('wisata') }}"class="hover:text-white transition">Destinasi Populer</a></li>
-                <li><a href="{{ route('kuliner') }}" class="hover:text-white transition">Rekomendasi Kuliner Populer</a></li>
-                <li><a href="{{ route('event') }}" class="hover:text-white transition">Daftar Event</a></li>
-            </ul>
-        </div>
-
-        <!-- Sosial Media -->
-        <div>
-            <h4 class="text-lg font-semibold mb-4">Sosial Media</h4>
-            <div class="flex justify-center md:justify-start space-x-4">
-                <a href="#"><img src="{{ asset('images/facebook.svg') }}" alt="Facebook" class="w-6 h-6"></a>
-                <a href="#"><img src="{{ asset('images/linkedin.svg') }}" alt="LinkedIn" class="w-6 h-6"></a>
-                <a href="#"><img src="{{ asset('images/twitter.svg') }}" alt="Twitter" class="w-6 h-6"></a>
-                <a href="#"><img src="{{ asset('images/ig.svg') }}" alt="Instagram" class="w-6 h-6"></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-[#2A933C] py-4">
-        <div class="text-center text-white/80 text-sm">
-            Copyright © 2025. All rights reserved.
-        </div>
-    </div>
-</footer>
-
+@include('components.footer')
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -354,24 +311,24 @@
         const destinationDots = document.querySelectorAll('.destination-dot');
         const destinationItems = destinationScroll.querySelectorAll('.scroll-snap-center');
         const destinationItemWidth = destinationItems[0].offsetWidth + 24; // width + margin
-        
+
         // Culinary section
         const culinaryScroll = document.getElementById('culinary-scroll');
         const culinaryDots = document.querySelectorAll('.culinary-dot');
         const culinaryItems = culinaryScroll.querySelectorAll('.scroll-snap-center');
         const culinaryItemWidth = culinaryItems[0].offsetWidth + 24; // width + margin
-        
+
         // Destination Dots Click Event
         destinationDots.forEach(dot => {
             dot.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
                 const scrollPos = index * destinationItemWidth;
-                
+
                 destinationScroll.scrollTo({
                     left: scrollPos,
                     behavior: 'smooth'
                 });
-                
+
                 // Update active state
                 destinationDots.forEach(d => d.classList.remove('bg-green-600', 'active'));
                 destinationDots.forEach(d => d.classList.add('bg-gray-300'));
@@ -379,18 +336,18 @@
                 this.classList.add('bg-green-600', 'active');
             });
         });
-        
+
         // Culinary Dots Click Event
         culinaryDots.forEach(dot => {
             dot.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
                 const scrollPos = index * culinaryItemWidth;
-                
+
                 culinaryScroll.scrollTo({
                     left: scrollPos,
                     behavior: 'smooth'
                 });
-                
+
                 // Update active state
                 culinaryDots.forEach(d => d.classList.remove('bg-green-600', 'active'));
                 culinaryDots.forEach(d => d.classList.add('bg-gray-300'));
@@ -398,79 +355,79 @@
                 this.classList.add('bg-green-600', 'active');
             });
         });
-        
+
         // Scroll event for destination
         destinationScroll.addEventListener('scroll', function() {
             const scrollPos = this.scrollLeft;
             const index = Math.round(scrollPos / destinationItemWidth);
-            
+
             // Update dots
             destinationDots.forEach(d => d.classList.remove('bg-green-600', 'active'));
             destinationDots.forEach(d => d.classList.add('bg-gray-300'));
-            
+
             if (destinationDots[index]) {
                 destinationDots[index].classList.remove('bg-gray-300');
                 destinationDots[index].classList.add('bg-green-600', 'active');
             }
         });
-        
+
         // Scroll event for culinary
         culinaryScroll.addEventListener('scroll', function() {
             const scrollPos = this.scrollLeft;
             const index = Math.round(scrollPos / culinaryItemWidth);
-            
+
             // Update dots
             culinaryDots.forEach(d => d.classList.remove('bg-green-600', 'active'));
             culinaryDots.forEach(d => d.classList.add('bg-gray-300'));
-            
+
             if (culinaryDots[index]) {
                 culinaryDots[index].classList.remove('bg-gray-300');
                 culinaryDots[index].classList.add('bg-green-600', 'active');
             }
         });
-        
+
         // Add CSS for scrollbar hiding and snap scrolling
         const style = document.createElement('style');
         style.textContent = `
             .scrollbar-hide::-webkit-scrollbar {
                 display: none;
             }
-            
+
             .scrollbar-hide {
                 -ms-overflow-style: none;
                 scrollbar-width: none;
             }
-            
+
             .scroll-snap-x {
                 scroll-snap-type: x mandatory;
             }
-            
+
             .scroll-snap-center {
                 scroll-snap-align: center;
             }
-            
+
             .scroll-snap-start {
                 scroll-snap-align: start;
             }
-            
+
             .scroll-snap-end {
                 scroll-snap-align: end;
             }
         `;
         document.head.appendChild(style);
-        
+
         // Set first dot as active for both sections
         if (destinationDots[0]) {
             destinationDots[0].classList.remove('bg-gray-300');
             destinationDots[0].classList.add('bg-green-600', 'active');
         }
-        
+
         if (culinaryDots[0]) {
             culinaryDots[0].classList.remove('bg-gray-300');
             culinaryDots[0].classList.add('bg-green-600', 'active');
         }
     });
-    
+
     // Testimonial Slider
     document.addEventListener('DOMContentLoaded', function() {
         const testimonialContainer = document.getElementById('testimonial-container');
@@ -478,38 +435,38 @@
         const prevBtn = document.getElementById('prev-testimonial');
         const nextBtn = document.getElementById('next-testimonial');
         let currentIndex = 0;
-        
+
         function showTestimonial(index) {
             testimonials.forEach(testimonial => {
                 testimonial.classList.add('hidden');
             });
-            
+
             testimonials[index].classList.remove('hidden');
         }
-        
+
         if (prevBtn && nextBtn) {
             prevBtn.addEventListener('click', function() {
                 currentIndex = (currentIndex === 0) ? testimonials.length - 1 : currentIndex - 1;
                 showTestimonial(currentIndex);
             });
-            
+
             nextBtn.addEventListener('click', function() {
                 currentIndex = (currentIndex === testimonials.length - 1) ? 0 : currentIndex + 1;
                 showTestimonial(currentIndex);
             });
         }
-        
+
         // Initialize with first testimonial
         if (testimonials.length > 0) {
             showTestimonial(0);
         }
     });
-    
+
     // Mobile menu toggle
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         if (menuBtn && mobileMenu) {
             menuBtn.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
@@ -525,11 +482,11 @@
         0% { opacity: 0; }
         100% { opacity: 1; }
     }
-    
+
     .fade-in {
         animation: fadeIn 0.5s ease-in-out;
     }
-    
+
     /* Hover effects for destination and culinary cards */
     .destination-card:hover,
     .culinary-card:hover {
@@ -537,22 +494,22 @@
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
     }
-    
+
     /* Transition for buttons */
     .btn-transition {
         transition: all 0.3s ease;
     }
-    
+
     .btn-transition:hover {
         transform: translateY(-2px);
     }
-    
+
     /* Smooth transition for navigation menu */
     .nav-link {
         position: relative;
         transition: color 0.3s ease;
     }
-    
+
     .nav-link::after {
         content: '';
         position: absolute;
@@ -563,26 +520,26 @@
         background-color: #047857;
         transition: width 0.3s ease;
     }
-    
+
     .nav-link:hover::after {
         width: 100%;
     }
-    
+
     /* Dot indicator styles */
     .dot-indicator {
         transition: background-color 0.3s ease;
     }
-    
+
     .dot-indicator.active {
         transform: scale(1.2);
         transition: transform 0.3s ease, background-color 0.3s ease;
     }
-    
+
     /* Testimonial fade transition */
     .testimonial {
         transition: opacity 0.5s ease;
     }
-    
+
     /* Hero section parallax effect */
     .parallax-bg {
         background-attachment: fixed;
@@ -590,32 +547,32 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
-    
+
     /* Custom scroll behavior for the horizontal scrolling sections */
     .custom-scroll {
         -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
     }
-    
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .destination-card,
         .culinary-card {
             transform: none !important;
         }
-        
+
         .parallax-bg {
             background-attachment: scroll;
         }
     }
-    
+
     /* Newsletter form focus effects */
     .newsletter-input:focus {
         border-color: #047857;
         box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.2);
         transition: all 0.3s ease;
     }
-    
+
     /* Custom scroll snap behavior */
     .custom-snap-scroll {
         scroll-padding: 1rem;
