@@ -302,7 +302,7 @@
 </div>
 </div>
 
-<footer class="bg-green-600 text-white">
+<footer class="bg-[#2A933C] text-white">
   <div class="w-full px-12 py-12 grid grid-cols-1 ml-40 md:grid-cols-3 gap-10 text-left">
         <!-- Kontak Kami -->
         <div>
@@ -321,9 +321,9 @@
         <div>
             <h4 class="text-lg font-semibold mb-4">Layanan</h4>
             <ul class="space-y-2 text-white/80">
-                <li><a href="#" class="hover:text-white transition">Destinasi Populer</a></li>
-                <li><a href="#" class="hover:text-white transition">Rekomendasi Populer</a></li>
-                <li><a href="#" class="hover:text-white transition">Daftar Event</a></li>
+                <li><a href="{{ route('wisata') }}"class="hover:text-white transition">Destinasi Populer</a></li>
+                <li><a href="{{ route('kuliner') }}" class="hover:text-white transition">Rekomendasi Kuliner Populer</a></li>
+                <li><a href="{{ route('event') }}" class="hover:text-white transition">Daftar Event</a></li>
             </ul>
         </div>
 
@@ -339,7 +339,7 @@
         </div>
     </div>
 
-    <div class="bg-green-600 py-4">
+    <div class="bg-[#2A933C] py-4">
         <div class="text-center text-white/80 text-sm">
             Copyright © 2025. All rights reserved.
         </div>
