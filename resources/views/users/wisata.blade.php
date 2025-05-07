@@ -72,7 +72,7 @@
                 <!-- Content Grid -->
                 <div class="w-full lg:w-9/12">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <a href="/detail-halaman" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
+                        <a href="/detail-wisata" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
                             <!-- Gambar -->
                             <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{asset('images/wisatae.jpg')}}');"></div>
 
