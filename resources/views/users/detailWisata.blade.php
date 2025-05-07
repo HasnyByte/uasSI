@@ -4,7 +4,7 @@
 <div class="container mx-auto px-4 py-8">
     <!-- Breadcrumbs -->
     <div class="flex items-center text-sm text-gray-600 mb-6">
-        <a href="{{ url('/') }}" class="hover:text-green-600">Home</a>
+        <a href="{{ url('/home') }}" class="hover:text-green-600">Home</a>
         <span class="mx-2">/</span>
         <a href="{{ url('/wisata') }}" class="hover:text-green-600">Wisata</a>
         <span class="mx-2">/</span>
