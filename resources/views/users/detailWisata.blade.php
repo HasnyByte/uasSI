@@ -14,46 +14,46 @@
     <!-- Destination Title -->
     <h1 class="text-3xl font-bold mb-6">Masjid Raya Baiturrahman</h1>
 
-    <!-- Main Image and Gallery -->
-    <div class="mb-8">
-        <!-- Main Image -->
-        <div class="w-full h-96 mb-4 rounded-lg overflow-hidden">
-            <img src="{{ asset('images/masjid-raya-1.png') }}" alt="Masjid Raya Baiturrahman" class="w-full h-full object-cover">
-        </div>
-        
-        <!-- Gallery Thumbnails -->
-        <div class="grid grid-cols-4 gap-4">
-            <div class="h-32 rounded-lg overflow-hidden">
+    <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Left Content - Main Image and Gallery -->
+        <div class="w-full lg:w-8/12">
+            <!-- Main Image -->
+            <div class="w-full h-96 mb-4 rounded-lg overflow-hidden">
                 <img src="{{ asset('images/masjid-raya-1.png') }}" alt="Masjid Raya Baiturrahman" class="w-full h-full object-cover">
             </div>
-            <div class="h-32 rounded-lg overflow-hidden">
-                <img src="{{ asset('images/masjid-raya-2.png') }}" alt="Interior Masjid" class="w-full h-full object-cover">
+            
+            <!-- Gallery Thumbnails -->
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <div class="h-24 rounded-lg overflow-hidden">
+                    <img src="{{ asset('images/masjid-raya-1.png') }}" alt="Masjid Raya Baiturrahman" class="w-full h-full object-cover">
+                </div>
+                <div class="h-24 rounded-lg overflow-hidden">
+                    <img src="{{ asset('images/masjid-raya-2.png') }}" alt="Interior Masjid" class="w-full h-full object-cover">
+                </div>
+                <div class="h-24 rounded-lg overflow-hidden">
+                    <img src="{{ asset('images/masjid-raya-3.png') }}" alt="Halaman Masjid" class="w-full h-full object-cover">
+                </div>
+                <div class="h-24 rounded-lg overflow-hidden">
+                    <img src="{{ asset('images/masjid-raya-4.png') }}" alt="Masjid Malam Hari" class="w-full h-full object-cover">
+                </div>
             </div>
-            <div class="h-32 rounded-lg overflow-hidden">
-                <img src="{{ asset('images/masjid-raya-3.png') }}" alt="Halaman Masjid" class="w-full h-full object-cover">
-            </div>
-            <div class="h-32 rounded-lg overflow-hidden">
-                <img src="{{ asset('images/masjid-raya-4.png') }}" alt="Masjid Malam Hari" class="w-full h-full object-cover">
-            </div>
-        </div>
-    </div>
 
-    <div class="flex flex-col lg:flex-row gap-8">
-        <!-- Left Content - Description -->
-        <div class="w-full lg:w-8/12">
-            <h2 class="text-2xl font-bold mb-4">Masjid Raya Baiturrahman</h2>
-            <div class="prose max-w-none space-y-4">
-                <p>Masjid Raya Baiturrahman adalah salah satu ikon paling terkenal di Provinsi Aceh sekaligus simbol kebanggaan masyarakat Aceh. Terletak di pusat Kota Banda Aceh, masjid ini memiliki nilai sejarah, budaya, dan religius yang sangat kuat. Dibangun pertama kali pada tahun 1612 oleh Sultan Iskandar Muda, masjid ini telah mengalami beberapa kali renovasi dan perbaikan, terutama setelah sempat hancur akibat agresi militer Belanda pada tahun 1873.</p>
+            <!-- Description -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">Masjid Raya Baiturrahman</h2>
+                <div class="prose max-w-none space-y-4 text-gray-700">
+                    <p>Masjid Raya Baiturrahman adalah salah satu ikon paling terkenal di Provinsi Aceh sekaligus simbol kebanggaan masyarakat Aceh. Terletak di pusat Kota Banda Aceh, masjid ini memiliki nilai sejarah, budaya, dan religius yang sangat kuat. Dibangun pertama kali pada tahun 1612 oleh Sultan Iskandar Muda, masjid ini telah mengalami beberapa kali renovasi dan perbaikan, terutama setelah sempat hancur akibat agresi militer Belanda pada tahun 1873.</p>
 
-                <p>Arsitektur Masjid Raya Baiturrahman memadukan gaya Mughal India dengan sentuhan lokal khas Aceh. Gaya khas tersebut terlihat dalam nuansa megah dengan ukiran-ukiran artistik pada bagian dinding dan pilar. Halaman masjid yang luas dilengkapi dengan kolam besar yang memantulkan bayangan bangunan utama, menciptakan pemandangan yang indah dan menenangkan. Dalam perkembangannya, masjid ini juga dilengkapi dengan payung elektrik raksasa di pelatarannnya, seperti yang ada di Masjid Nabawi di Madinah.</p>
+                    <p>Arsitektur Masjid Raya Baiturrahman memadukan gaya Mughal India dengan sentuhan lokal khas Aceh. Gaya khas tersebut terlihat dalam nuansa megah dengan ukiran-ukiran artistik pada bagian dinding dan pilar. Halaman masjid yang luas dilengkapi dengan kolam besar yang memantulkan bayangan bangunan utama, menciptakan pemandangan yang indah dan menenangkan. Dalam perkembangannya, masjid ini juga dilengkapi dengan payung elektrik raksasa di pelatarannnya, seperti yang ada di Masjid Nabawi di Madinah.</p>
 
-                <p>Selain menjadi tempat ibadah utama, Masjid Raya Baiturrahman juga menjadi pusat kegiatan keagamaan, pendidikan Islam, dan destinasi wisata religi. Keberadaannya yang tetap kokoh setelah diterjang tsunami dahsyat pada tahun 2004 juga dipandang sebagai tanda kekuatan, harapan, dan keteguhan masyarakat Aceh dalam menghadapi bencana.</p>
+                    <p>Selain menjadi tempat ibadah utama, Masjid Raya Baiturrahman juga menjadi pusat kegiatan keagamaan, pendidikan Islam, dan destinasi wisata religi. Keberadaannya yang tetap kokoh setelah diterjang tsunami dahsyat pada tahun 2004 juga dipandang sebagai tanda kekuatan, harapan, dan keteguhan masyarakat Aceh dalam menghadapi bencana.</p>
+                </div>
             </div>
         </div>
 
         <!-- Right Sidebar - Info -->
         <div class="w-full lg:w-4/12">
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
                 <!-- Category Badge -->
                 <div class="mb-4">
                     <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
@@ -63,64 +63,69 @@
 
                 <!-- Info List -->
                 <div class="space-y-4">
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Alamat</span>
-                        <span class="text-gray-900 font-medium">Batoh, Lueng Bata, Banda Aceh City, Aceh 23122</span>
+                    <div class="flex items-start">
+                        <span class="text-gray-600 w-1/3">Alamat</span>
+                        <span class="text-gray-900 font-medium w-2/3">Batoh, Lueng Bata, Banda Aceh City, Aceh 23122</span>
                     </div>
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Jam Buka</span>
-                        <span class="text-gray-900 font-medium">Setiap Hari 07:00:00 - 21:00:00</span>
+                    <div class="flex items-start">
+                        <span class="text-gray-600 w-1/3">Jam Buka</span>
+                        <span class="text-gray-900 font-medium w-2/3">Setiap Hari 07:00:00 - 21:00:00</span>
                     </div>
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Tiket</span>
-                        <span class="text-gray-900 font-medium">Gratis</span>
+                    <div class="flex items-start">
+                        <span class="text-gray-600 w-1/3">Tiket</span>
+                        <span class="text-gray-900 font-medium w-2/3">Gratis</span>
                     </div>
                 </div>
 
-                <!-- Info Buttons -->
-                <div class="mt-6 space-y-3">
-                    <a href="#" class="block w-full bg-green-600 text-white text-center py-3 rounded-lg hover:bg-green-700 transition">
+                <!-- Information Desk Button -->
+                <div class="mt-6">
+                    <a href="#" class="block w-full bg-green-600 text-white text-center py-3 rounded-lg hover:bg-green-700 transition mb-3">
                         Information Desk
                     </a>
-                    <a href="#" class="block w-full bg-white border border-gray-300 text-gray-700 text-center py-3 rounded-lg hover:bg-gray-50 transition">
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold mb-4">Comment</h2>
+                
+                <!-- Comments will be loaded here -->
+                <div id="comments-container" class="space-y-4">
+                    <div class="border-b border-gray-200 pb-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mr-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                                    <span class="text-gray-500 font-bold">A</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Ahmad</h4>
+                                <div class="text-sm text-gray-500 mb-2">2 hari yang lalu</div>
+                                <p class="text-gray-700 text-sm">Tempat yang sangat indah dan tenang. Arsitekturnya luar biasa dan area sekitar masjid juga sangat bersih. Wajib dikunjungi jika ke Banda Aceh.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-200 pb-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mr-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                                    <span class="text-gray-500 font-bold">S</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Sarah</h4>
+                                <div class="text-sm text-gray-500 mb-2">1 minggu yang lalu</div>
+                                <p class="text-gray-700 text-sm">Masjid yang bersejarah dengan arsitektur yang megah. Saya sangat terkesan dengan kombinasi gaya Mughal dan sentuhan lokal Aceh.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Button -->
+                <div class="mt-6">
+                    <a href="#" class="block w-full border border-gray-300 text-gray-700 text-center py-3 rounded-lg hover:bg-gray-50 transition">
                         Review
                     </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Comments Section -->
-    <div class="mt-12">
-        <h2 class="text-2xl font-bold mb-6">Comments</h2>
-        <!-- Comments will be loaded here -->
-        <div id="comments-container">
-            <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
-                <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-                            <span class="text-gray-500 font-bold">A</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold">Ahmad</h4>
-                        <div class="text-sm text-gray-500 mb-2">2 hari yang lalu</div>
-                        <p>Tempat yang sangat indah dan tenang. Arsitekturnya luar biasa dan area sekitar masjid juga sangat bersih. Wajib dikunjungi jika ke Banda Aceh.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
-                <div class="flex items-start">
-                    <div class="flex-shrink-0 mr-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-                            <span class="text-gray-500 font-bold">S</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold">Sarah</h4>
-                        <div class="text-sm text-gray-500 mb-2">1 minggu yang lalu</div>
-                        <p>Masjid yang bersejarah dengan arsitektur yang megah. Saya sangat terkesan dengan kombinasi gaya Mughal dan sentuhan lokal Aceh.</p>
-                    </div>
                 </div>
             </div>
         </div>
