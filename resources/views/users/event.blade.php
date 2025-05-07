@@ -70,51 +70,45 @@
                 <!-- Content Grid -->
                 <div class="w-full lg:w-9/12">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <a href="/detail-halaman" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
-                            <!-- Gambar -->
-                            <div
-                                class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-                                style="background-image: url('https://radarlampung.disway.id/upload/21bc3af6f495ca3b1ec6c30285ea9e43.jpg');">
-                            </div>
+                        @foreach ($events as $event)
+                            <a href="{{ route('event.show', $event->id_event) }}" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
+                                <!-- Gambar -->
+                                <div
+                                    class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+                                    style="background-image: url('{{ $event->flyer_event ? asset($event->flyer_event) : 'https://via.placeholder.com/400x300' }}');">
+                                </div>
 
-                            <!-- Overlay dan Teks -->
-                            <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
-                                <h3 class="font-semibold text-lg text-white">
-                                    Sound Of Soul
-                                </h3>
+                                <!-- Overlay dan Teks -->
+                                <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
+                                    <h3 class="font-semibold text-lg text-white">
+                                        {{ $event->nama_event }}
+                                    </h3>
 
-                                <!-- Visit + Status -->
-                                <div class="mt-2 flex items-center justify-between">
-                                    <div class="inline-flex items-center text-sm font-medium text-white transition">
-                                        Visit
-                                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                        </svg>
+                                    <!-- Visit + Status -->
+                                    <div class="mt-2 flex items-center justify-between">
+                                        <div class="inline-flex items-center text-sm font-medium text-white transition">
+                                            Visit
+                                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </div>
+                                        <span class="ml-2 px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded-full">
+                                            {{ \Carbon\Carbon::createFromFormat('d/m/Y H:i', explode(' - ', $event->tanggal_event)[0])->isFuture() ? 'Upcoming' : 'Sedang Berlangsung' }}
+                                        </span>
                                     </div>
-                                    <span class="ml-2 px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded-full">
-                                        Sedang Berlangsung
-                                    </span>
-                                </div>
 
-                                <!-- Waktu Acara -->
-                                <div class="mt-1 text-xs text-gray-200">
-                                    2/05/2025 21.00 - 4/05/2025 23.00
+                                    <!-- Waktu Acara -->
+                                    <div class="mt-1 text-xs text-gray-200">
+                                        {{ $event->tanggal_event }}
+                                    </div>
                                 </div>
-                            </div>
-
-                        </a>
+                            </a>
+                        @endforeach
                     </div>
 
                     <!-- Pagination -->
                     <div class="flex justify-center mt-8">
-                        <ul class="flex space-x-2">
-                            <li>
-                                <button class="px-3 py-1 bg-[#2A933C] text-white rounded font-medium" disabled>1</button>
-                            </li>
-                            <li>
-                                <button class="px-3 py-1 border border-gray-300 text-gray-600 rounded hover:bg-gray-100">2</button>
-                            </li>
-                        </ul>
+                        {{ $events->links() }}
                     </div>
                 </div>
             </div>

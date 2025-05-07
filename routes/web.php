@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KulinerController;
 
 // Route::get('/adminDashboard', function () {
 //     return view('admin.dashboard');
@@ -37,14 +38,13 @@ Route::get('/wisata', function () {
 })->name('wisata');
 
 // Kuliner
-Route::get('/kuliner', function () {
-    return view('users.kuliner');
-})->name('kuliner');
+Route::get('/kuliner', [KulinerController::class, 'index'])->name('kuliner');
+Route::get('/kuliner/{id}', [KulinerController::class, 'show'])->name('kuliner.show');
+
 
 // Event
-Route::get('/event', function () {
-    return view('users.event');
-})->name('event');
+Route::get('/event', [EventController::class, 'index'])->name('event');
+Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 
 
 //masi gapaham sih sama ini
