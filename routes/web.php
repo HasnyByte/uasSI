@@ -56,6 +56,11 @@ Route::get('/detailevent', function () {
     return view('users.detailevent');
 })->name('detailevent');
 
+// Detail Wisate
+Route::get('/detailkuliner', function () {
+    return view('users.detailkuliner');
+})->name('detailkuliner');
+
 //masi gapaham sih sama ini
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');

@@ -70,7 +70,7 @@
                 <!-- Content Grid -->
                 <div class="w-full lg:w-9/12">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <a href="/detail-halaman" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
+                        <a href="{{route('detailkuliner')}}" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
                             <!-- Gambar -->
                             <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1563241974/rblfa5gswdfbyurtvjme.jpg');"></div>
 
