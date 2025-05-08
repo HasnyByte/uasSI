@@ -48,5 +48,6 @@ Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 
 
 //masi gapaham sih sama ini
+
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
