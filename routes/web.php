@@ -51,6 +51,10 @@ Route::get('/detail-wisata', function () {
     return view('users.detailWisata');
 })->name('detailWisata');
 
+// Detail Event
+Route::get('/detailevent', function () {
+    return view('users.detailevent');
+})->name('detailevent');
 
 //masi gapaham sih sama ini
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
