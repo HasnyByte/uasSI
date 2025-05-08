@@ -2,14 +2,22 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
-    <!-- Breadcrumbs -->
-    <div class="flex items-center text-sm text-gray-600 mb-6">
-        <a href="{{ url('/home') }}" class="hover:text-green-600">Home</a>
-        <span class="mx-2">/</span>
-        <a href="{{ url('/wisata') }}" class="hover:text-green-600">Wisata</a>
-        <span class="mx-2">/</span>
-        <span class="text-gray-800">Masjid Raya Baiturrahman</span>
-    </div>
+    <!-- Breadcrumb -->
+                <div class="flex flex-wrap items-center text-sm text-[#777E90] space-x-3">
+                    <span class="font-semibold text-gray-800">Detail Wisata</span>
+                    <span>|</span>
+                    <nav>
+                        <ol class="flex flex-wrap space-x-2">
+                            <li>
+                                <a href="{{ route('home') }}" class="hover:underline">Home</a>
+                            </li>
+                            <li class="before:content-['-'] before:px-2">
+                                <a href="{{ route('wisata') }}" class="hover:underline">Wisata</a>
+                            </li>
+                            <li class="before:content-['-'] before:px-2">Details</li>
+                        </ol>
+                    </nav>
+                </div>
 
     <!-- Destination Title -->
     <h1 class="text-3xl font-bold mb-6">Masjid Raya Baiturrahman</h1>
