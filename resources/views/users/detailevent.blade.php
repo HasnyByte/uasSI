@@ -44,7 +44,7 @@
 
                         <!-- Gallery Thumbnail -->
                         <div class="grid grid-cols-1 gap-4 mt-4">
-                            <div class="h-28 w-40 rounded-lg overflow-hidden">
+                            <div class="h-28 w-40 rounded-lg ov erflow-hidden">
                                 <img src="https://radarlampung.disway.id/upload/21bc3af6f495ca3b1ec6c30285ea9e43.jpg" class="w-full h-full object-cover">
                             </div>
                         </div>
