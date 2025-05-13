@@ -233,7 +233,7 @@
 <div id="reviewModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
     <div class="flex items-center justify-center min-h-screen p-4">
         <!-- Backdrop with click to close -->
-        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" id="modalBackdrop"></div>
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300" id="modalBackdrop"></div>
         
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-auto transform transition-transform scale-95 opacity-0 duration-300" id="modalContent">
