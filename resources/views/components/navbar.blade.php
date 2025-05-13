@@ -14,10 +14,10 @@
         <!-- Navigasi -->
         <div class="flex items-center space-x-24">
             <div class="hidden md:flex space-x-14">
-                <a href="#" class="text-[#777E90] font-medium hover:text-[#2A933C]">Home</a>
-                <a href="#" class="text-[#777E90] font-medium hover:text-[#2A933C]">Wisata</a>
-                <a href="#" class="text-[#777E90] font-medium hover:text-[#2A933C]">Kuliner</a>
-                <a href="#" class="text-[#777E90] font-medium hover:text-[#2A933C]">Events</a>
+                <a href="{{route('home')}}" class="text-[#777E90] font-medium hover:text-[#2A933C]">Home</a>
+                <a href="{{route('wisata')}}" class="text-[#777E90] font-medium hover:text-[#2A933C]">Wisata</a>
+                <a href="{{route('kuliner')}}" class="text-[#777E90] font-medium hover:text-[#2A933C]">Kuliner</a>
+                <a href="{{route('event')}}" class="text-[#777E90] font-medium hover:text-[#2A933C]">Events</a>
             </div>
 
             <!-- Ikon Profil + Popup Logout -->
