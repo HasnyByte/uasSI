@@ -61,6 +61,12 @@ Route::get('/detailkuliner', function () {
     return view('users.detailkuliner');
 })->name('detailkuliner');
 
-//masi gapaham sih sama ini
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
-Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
+//login
+Route::get('/', function () {
+    return view('components.auth.login');
+})->name('login');
+
+//register
+Route::get('/register', function () {
+    return view('components.auth.register');
+})->name('register');
