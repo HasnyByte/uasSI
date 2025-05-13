@@ -36,49 +36,7 @@
                     </div>
                 </div>
 
-                <!-- Overall Rating -->
-                <div class="bg-white p-6 rounded-lg shadow-sm mt-6">
-                    <h3 class="font-semibold mb-4">Overall rating</h3>
-
-                    <div class="mb-6">
-                        @foreach ([5, 4, 3, 2, 1] as $star)
-                            <div class="flex items-center mb-1">
-                                <span class="w-4 text-xs mr-2">{{ $star }}</span>
-                                <div class="flex-1 h-2 bg-gray-200 rounded overflow-hidden">
-                                    <div class="bg-[#2A933C] h-full" style="width: {{ [5 => 60, 4 => 20, 3 => 10, 2 => 5, 1 => 5][$star] }}%"></div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="text-center p-3 bg-gray-50 rounded">
-                            <div class="text-xl mb-1">🧹</div>
-                            <div class="font-bold text-lg">4.8</div>
-                            <div class="text-sm text-gray-500">Cleanliness</div>
-                        </div>
-                        <div class="text-center p-3 bg-gray-50 rounded">
-                            <div class="text-xl mb-1">✓</div>
-                            <div class="font-bold text-lg">4.7</div>
-                            <div class="text-sm text-gray-500">Accuracy</div>
-                        </div>
-                        <div class="text-center p-3 bg-gray-50 rounded">
-                            <div class="text-xl mb-1">💬</div>
-                            <div class="font-bold text-lg">4.5</div>
-                            <div class="text-sm text-gray-500">Communication</div>
-                        </div>
-                        <div class="text-center p-3 bg-gray-50 rounded">
-                            <div class="text-xl mb-1">📍</div>
-                            <div class="font-bold text-lg">4.6</div>
-                            <div class="text-sm text-gray-500">Location</div>
-                        </div>
-                        <div class="text-center p-3 bg-gray-50 rounded">
-                            <div class="text-xl mb-1">💰</div>
-                            <div class="font-bold text-lg">4.9</div>
-                            <div class="text-sm text-gray-500">Value</div>
-                        </div>
-                    </div>
-                </div>
+            
             </div>
 
             <!-- Sidebar -->
@@ -104,40 +62,144 @@
                         </svg>
                         Hubungi Via Telefon
                     </a>
+                </div>
 
-                    <button class="flex justify-center items-center w-full border border-[#2A933C] text-[#2A933C] py-3 px-4 rounded-lg hover:bg-green-50 transition">
+                <!-- Comments Section -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold mb-4">Review</h2>
+                
+                <!-- Comments container -->
+                <div id="comments-container" class="space-y-0">
+                    <!-- Comment 1 -->
+                    <div class="border-t border-gray-200 py-4">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 mr-3">
+                                    <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center">
+                                        <span class="text-white font-bold">k</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Khalishadz</h4>
+                                    <div class="text-sm text-gray-500">17 - 04 - 2025</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-bold text-xl">5</span>
+                                <svg class="w-5 h-5 text-yellow-400 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 text-sm my-4">enak dan bersih juga tempatnya!!!</p>
+                    </div>
+                    
+                    <!-- Comment 2 -->
+                    <div class="border-t border-gray-200 py-4">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 mr-3">
+                                    <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                                        <span class="text-gray-500 font-bold">r</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">ikramshaldiade</h4>
+                                    <div class="text-sm text-gray-500">16 - 04 - 2025</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-bold text-xl">4</span>
+                                <svg class="w-5 h-5 text-yellow-400 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 text-sm my-4">enak parah ga alot</p>
+                    </div>
+                </div>
+
+                <!-- Review Button -->
+                <div class="mt-6">
+                    <a href="#" class="block w-full border border-gray-300 text-gray-700 text-center py-3 rounded-lg hover:bg-gray-50 transition">
                         Review
-                    </button>
+                    </a>
                 </div>
+            </div>
+            </div>
+        </div>
 
-                <!-- Ulasan -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-semibold mb-4">Ulasan Pengunjung</h3>
-
-                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                        <div class="flex justify-between items-start">
-                            <h4 class="font-medium">Budi Santoso</h4>
-                            <div class="flex items-center">
-                                <span class="font-bold mr-1">5</span>
-                                <span class="text-yellow-400">★</span>
-                            </div>
+        <!-- Other Destinations -->
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold mb-6">Other Destinations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Destination 1 -->
+                <a href="{{ url('/wisata/kuah-beulangong') }}" class="block relative h-80 rounded-lg overflow-hidden shadow-md group">
+                    <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{ asset('images/beulangong.png') }}');"></div>
+                    <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
+                        <h3 class="font-semibold text-lg text-white">Kuah Beulangong</h3>
+                        <div class="flex items-center mt-2">
+                            <span class="inline-flex items-center text-sm text-white mr-3">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"></path>
+                                </svg>
+                                Aceh Besar
+                            </span>
                         </div>
-                        <div class="text-sm text-gray-500 mb-2">03/05/2025</div>
-                        <p class="text-gray-700">Rasa sate yang autentik dan kuahnya sangat kental. Highly recommended!</p>
-                    </div>
-
-                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                        <div class="flex justify-between items-start">
-                            <h4 class="font-medium">Siti Rahma</h4>
-                            <div class="flex items-center">
-                                <span class="font-bold mr-1">4</span>
-                                <span class="text-yellow-400">★</span>
-                            </div>
+                        <div class="mt-2 inline-flex items-center text-sm font-medium text-white transition">
+                            Visit
+                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                            </svg>
                         </div>
-                        <div class="text-sm text-gray-500 mb-2">30/04/2025</div>
-                        <p class="text-gray-700">Tempat bersih, pelayanan cepat, tapi agak ramai saat weekend.</p>
                     </div>
-                </div>
+                </a>
+                
+                <!-- Destination 2 -->
+                <a href="{{ url('/wisata/mie-razali') }}" class="block relative h-80 rounded-lg overflow-hidden shadow-md group">
+                    <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{ asset('images/razali.png') }}');"></div>
+                    <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
+                        <h3 class="font-semibold text-lg text-white">Mie Razali</h3>
+                        <div class="flex items-center mt-2">
+                            <span class="inline-flex items-center text-sm text-white mr-3">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"></path>
+                                </svg>
+                                Banda Aceh
+                            </span>
+                        </div>
+                        <div class="mt-2 inline-flex items-center text-sm font-medium text-white transition">
+                            Visit
+                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Destination 3 -->
+                <a href="{{ url('/wisata/u-groh') }}" class="block relative h-80 rounded-lg overflow-hidden shadow-md group">
+                    <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{ asset('images/groh.png') }}');"></div>
+                    <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
+                        <h3 class="font-semibold text-lg text-white">Rujak U Groh</h3>
+                        <div class="flex items-center mt-2">
+                            <span class="inline-flex items-center text-sm text-white mr-3">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"></path>
+                                </svg>
+                                Aceh Besar
+                            </span>
+                        </div>
+                        <div class="mt-2 inline-flex items-center text-sm font-medium text-white transition">
+                            Visit
+                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
             </div>
         </div>
     </div>
