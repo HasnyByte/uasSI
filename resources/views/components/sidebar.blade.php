@@ -20,6 +20,6 @@
         </nav>
     </div>
     <div class="px-4 py-4">
-        <button onclick="window.location.href='/auth/login'" class="w-full bg-white py-2 rounded-md text-black mb-5 font-medium">Log Out</button>
+        <button onclick="window.location.href='http://127.0.0.1:8000/'" class="w-full bg-white py-2 rounded-md text-black mb-5 font-medium">Log Out</button>
     </div>
 </aside>

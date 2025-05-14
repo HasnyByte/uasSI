@@ -25,4 +25,35 @@ class KulinerController extends Controller
 
         return response()->json($kuliner);
     }
+
+    public function listKuliner(Request $request)
+    {
+        $kategori = $request->query('kategori');
+        $search = $request->query('search');
+    
+        $query = Kuliner::query();
+    
+        if ($kategori) {
+            $query->where('id_kuliner', 'LIKE', $kategori . '%');
+        }
+    
+        if ($search) {
+            $query->where('nama_kuliner', 'like', '%' . $search . '%');
+        }
+    
+        $data_kuliner = $query->paginate(6);
+    
+        return view('users.kuliner', compact('data_kuliner', 'kategori'));
+    }          
+
+    public function showDetail($id)
+    {
+        $kuliner = Kuliner::find($id);
+
+        if (!$kuliner) {
+            abort(404, 'Kuliner tidak ditemukan');
+        }
+
+        return view('users.detailkuliner', compact('kuliner'));
+    }
 }

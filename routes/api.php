@@ -9,7 +9,6 @@ use App\Http\Controllers\DestinasiWisataController;
 use App\Http\Controllers\KulinerController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\AuthController;
 
 Route::post('/register', [UsersController::class, 'register']);
 Route::post('/login', [UsersController::class, 'login']);
@@ -36,6 +35,6 @@ Route::get('/review', [ReviewController::class, 'index']);
 Route::get('/review/{id}', [ReviewController::class, 'show']);
 Route::post('/review', [ReviewController::class, 'store'])->middleware('auth:sanctum');
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/register', [RegisterController::class, 'register']);
 Route::middleware('auth:sanctum')->get('/profile', [AuthController::class, 'profile']);

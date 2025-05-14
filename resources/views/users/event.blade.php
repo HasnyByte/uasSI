@@ -29,12 +29,15 @@
                 <div class="w-full lg:w-9/12">
                     <div class="flex flex-col lg:flex-row items-center justify-end gap-4">
                         <div class="w-fit max-w-sm ml-auto">
+                        <form action="{{ route('event') }}" method="GET">
                             <div class="flex rounded-[12px] shadow-sm overflow-hidden">
-                                <input type="text" placeholder="Type" class="px-4 py-2 border border-gray-300 rounded-l-[12px] focus:outline-none focus:ring-2 focus:ring-[#2A933C]"/>
-                                <button type="button" class="bg-[#2A933C] text-white px-4 py-2 font-medium text-sm rounded-r-[12px] hover:bg-green-700 transition">
+                                <input type="text" name="search" placeholder="Cari nama event..." value="{{ request('search') }}"
+                                    class="px-4 py-2 border border-gray-300 rounded-l-[12px] focus:outline-none focus:ring-2 focus:ring-[#2A933C]"/>
+                                <button type="submit" class="bg-[#2A933C] text-white px-4 py-2 font-medium text-sm rounded-r-[12px] hover:bg-green-700 transition">
                                     Search
                                 </button>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -70,17 +73,18 @@
                 <!-- Content Grid -->
                 <div class="w-full lg:w-9/12">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <a href="/detail-halaman" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
+                    @foreach($events as $event)
+                        <a href="{{ route('event.show', $event->id_event) }}" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
                             <!-- Gambar -->
                             <div
                                 class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-                                style="background-image: url('https://radarlampung.disway.id/upload/21bc3af6f495ca3b1ec6c30285ea9e43.jpg');">
+                                style="background-image: url('{{ asset($event->flyer_event ?? 'images/default.jpg') }}');">
                             </div>
 
                             <!-- Overlay dan Teks -->
                             <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
                                 <h3 class="font-semibold text-lg text-white">
-                                    Sound Of Soul
+                                    {{ $event->nama_event }}
                                 </h3>
 
                                 <!-- Visit + Status -->
@@ -92,17 +96,19 @@
                                         </svg>
                                     </div>
                                     <span class="ml-2 px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded-full">
-                                        Sedang Berlangsung
+                                        {{-- Status bisa ditambahkan nanti jika ada --}}
+                                        Upcoming
                                     </span>
                                 </div>
 
                                 <!-- Waktu Acara -->
                                 <div class="mt-1 text-xs text-gray-200">
-                                    2/05/2025 21.00 - 4/05/2025 23.00
+                                    {{ $event->tanggal_event }}
                                 </div>
                             </div>
-
                         </a>
+                    @endforeach
+
                     </div>
 
                     <!-- Pagination -->

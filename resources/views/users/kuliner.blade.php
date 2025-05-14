@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="relative text-white bg-cover bg-center h-64" style="background-image: url('https://thumb.viva.co.id/media/frontend/thumbs3/2022/04/05/624c501348902-mie-aceh_1265_711.jpg');">
-    <!-- Overlay gradient -->
+        <!-- Overlay gradient -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/20">
             <div class="absolute inset-0 flex flex-col items-center justify-center z-10 text-center">
                 <div class="font-bold text-[30px]">
@@ -29,12 +29,14 @@
                 <div class="w-full lg:w-9/12">
                     <div class="flex flex-col lg:flex-row items-center justify-end gap-4">
                         <div class="w-fit max-w-sm ml-auto">
-                            <div class="flex rounded-[12px] shadow-sm overflow-hidden">
-                                <input type="text" placeholder="Type" class="px-4 py-2 border border-gray-300 rounded-l-[12px] focus:outline-none focus:ring-2 focus:ring-[#2A933C]"/>
-                                <button type="button" class="bg-[#2A933C] text-white px-4 py-2 font-medium text-sm rounded-r-[12px] hover:bg-green-700 transition">
-                                    Search
-                                </button>
-                            </div>
+                            <form action="{{ route('kuliner') }}" method="GET">
+                                <div class="flex rounded-[12px] shadow-sm overflow-hidden">
+                                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari kuliner..." class="px-4 py-2 border border-gray-300 rounded-l-[12px] focus:outline-none focus:ring-2 focus:ring-[#2A933C]"/>
+                                    <button type="submit" class="bg-[#2A933C] text-white px-4 py-2 font-medium text-sm rounded-r-[12px] hover:bg-green-700 transition">
+                                        Search
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -58,54 +60,80 @@
                             </button>
 
                             <!-- Dropdown List -->
-                            <div id="categoryDropdown" class="mt-3 border-t border-gray-200 pt-2 space-y-1" style="display: none;">
-                                <a href="#" class="block px-2 py-1 hover:bg-gray-100 rounded text-sm text-gray-700">Autentik Lokal</a>
-                                <a href="#" class="block px-2 py-1 hover:bg-gray-100 rounded text-sm text-gray-700">Restaurant</a>
-                                <a href="#" class="block px-2 py-1 hover:bg-gray-100 rounded text-sm text-gray-700">Cafe</a>
+                            <div id="categoryDropdown" class="mt-3 border-t border-gray-200 pt-2 space-y-1 hidden">
+                                <a href="{{ url('/kuliner?kategori=KAL') }}" class="block px-2 py-1 hover:bg-gray-100 rounded text-sm text-gray-700">Autentik Lokal</a>
+                                <a href="{{ url('/kuliner?kategori=KRM') }}" class="block px-2 py-1 hover:bg-gray-100 rounded text-sm text-gray-700">Rumah Makan</a>
+                                <a href="{{ url('/kuliner?kategori=KCF') }}" class="block px-2 py-1 hover:bg-gray-100 rounded text-sm text-gray-700">Cafe</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Content Grid -->
-                <div class="w-full lg:w-9/12">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <a href="/detail-halaman" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
-                            <!-- Gambar -->
-                            <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1563241974/rblfa5gswdfbyurtvjme.jpg');"></div>
+                <!-- Grid kuliner -->
+                <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach ($data_kuliner as $kuliner)
+                        <a href="/kuliner/{{ $kuliner->id }}" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
+                            <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+                                style="background-image: url('{{ $kuliner->foto_kuliner }}');">
+                            </div>
 
-                            <!-- Overlay dan teks -->
                             <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
-                                <h3 class="font-semibold text-lg text-white">Sate Matang Apaleh Geurugok</h3>
+                                <h3 class="font-semibold text-lg text-white">{{ $kuliner->nama_kuliner }}</h3>
                                 <div class="mt-2 inline-flex items-center text-sm font-medium text-white transition">
                                     Visit
-                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
                                     </svg>
                                 </div>
                             </div>
                         </a>
-                    </div>
-
-                    <!-- Pagination -->
-                    <div class="flex justify-center mt-8">
-                        <ul class="flex space-x-2">
-                            <li>
-                                <button class="px-3 py-1 bg-[#2A933C] text-white rounded font-medium" disabled>1</button>
-                            </li>
-                            <li>
-                                <button class="px-3 py-1 border border-gray-300 text-gray-600 rounded hover:bg-gray-100">2</button>
-                            </li>
-                        </ul>
-                    </div>
+                    @endforeach
                 </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-8">
+                <ul class="flex space-x-2">
+                    {{-- Previous --}}
+                    @if ($data_kuliner->onFirstPage())
+                        <li><span class="px-3 py-1 text-gray-400">Prev</span></li>
+                    @else
+                        <li><a href="{{ $data_kuliner->previousPageUrl() }}" class="px-3 py-1 border border-gray-300 text-gray-600 rounded hover:bg-gray-100">Prev</a></li>
+                    @endif
+
+                    {{-- Page Numbers --}}
+                    @foreach ($data_kuliner->getUrlRange(1, $data_kuliner->lastPage()) as $page => $url)
+                        <li>
+                            @if ($page == $data_kuliner->currentPage())
+                                <span class="px-3 py-1 bg-[#2A933C] text-white rounded font-medium">{{ $page }}</span>
+                            @else
+                                <a href="{{ $url }}" class="px-3 py-1 border border-gray-300 text-gray-600 rounded hover:bg-gray-100">{{ $page }}</a>
+                            @endif
+                        </li>
+                    @endforeach
+
+                    {{-- Next --}}
+                    @if ($data_kuliner->hasMorePages())
+                        <li><a href="{{ $data_kuliner->nextPageUrl() }}" class="px-3 py-1 border border-gray-300 text-gray-600 rounded hover:bg-gray-100">Next</a></li>
+                    @else
+                        <li><span class="px-3 py-1 text-gray-400">Next</span></li>
+                    @endif
+                </ul>
             </div>
         </div>
     </section>
 
     @include('components.footer')
-    <!-- load function js -->
-    <script src="{{ asset('js/dropdown.js') }}"></script>
+
+    <!-- JS Dropdown Toggle -->
+    <script>
+        const dropdownBtn = document.getElementById('categoryDropdownBtn');
+        const dropdown = document.getElementById('categoryDropdown');
+        const arrow = document.getElementById('dropdownArrow');
+
+        dropdownBtn.addEventListener('click', () => {
+            dropdown.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        });
+    </script>
 @endsection
-
-

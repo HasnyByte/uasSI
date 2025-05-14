@@ -1,52 +1,57 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\UsersController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\UserEventController;
+use App\Http\Controllers\DestinasiWisataController;
+use App\Http\Controllers\KulinerController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
-// Route::get('/adminDashboard', function () {
-//     return view('admin.dashboard');
-// })->name('dashboard');
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('/adminDashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-
 Route::get('/adminPengguna', [UsersController::class, 'index'])->name('pengguna');
-
-// Route::get('/adminPengguna', function () {
-//     return view('admin.pengguna');
-// })->name('pengguna');
-
 Route::get('/adminEvent', [EventController::class, 'index'])->name('admin.event.index');
-
 Route::post('/adminEvent', [EventController::class, 'store'])->name('admin.event.store');
+Route::get('/adminReview', fn() => view('admin.review'))->name('review');
 
-Route::get('/adminReview', function () {
-    return view('admin.review');
-})->name('review');
+/*
+|--------------------------------------------------------------------------
+| User Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/home', fn() => view('users.home'))->name('home');
+Route::get('/wisata', [DestinasiWisataController::class, 'listWisata'])->name('wisata');
+Route::get('/wisata/{id}', [DestinasiWisataController::class, 'show'])->name('detailWisata');
+Route::get('/kuliner', [KulinerController::class, 'listKuliner'])->name('kuliner');
+Route::get('/kuliner/{id}', [KulinerController::class, 'showDetail'])->name('detailkuliner');
+Route::get('/event', [UserEventController::class, 'index'])->name('event');
+Route::get('/event/{id}', [UserEventController::class, 'show'])->name('event.show');
+Route::get('/review/{id}/create', [ReviewController::class, 'create'])->name('review.create');
+Route::get('/info', [PageController::class, 'informationDesk'])->name('info.desk');
 
+/*
+|--------------------------------------------------------------------------
+| Auth Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/', fn() => view('components.auth.login'))->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
-//untuk coba halaman users
-// Home
-Route::get('/home', function () {
-    return view('users.home');
-})->name('home');
+Route::get('/register', fn() => view('components.auth.register'))->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
-// Wisata
-Route::get('/wisata', function () {
-    return view('users.wisata');
-})->name('wisata');
-
-// Kuliner
-Route::get('/kuliner', function () {
-    return view('users.kuliner');
-})->name('kuliner');
-
-// Event
-Route::get('/event', function () {
-    return view('users.event');
-})->name('event');
-
-
-//masi gapaham sih sama ini
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
-Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
+Route::post('/logout', function () {
+    Auth::logout();
+    session()->flush();
+    return redirect('/');
+})->name('logout');

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    protected $table = 'review';
+    protected $table = 'reviews';
     protected $primaryKey = 'id_review';
     public $timestamps = false;
 
@@ -28,12 +28,12 @@ class Review extends Model
     // Relasi ke Destinasi Wisata (optional)
     public function destinasi()
     {
-        return $this->belongsTo(DestinasiWisata::class, 'id_destinasi');
+        return $this->belongsTo(DestinasiWisata::class, 'id_destinasi', 'id_destinasi');
     }
 
     // Relasi ke Kuliner (optional)
     public function kuliner()
     {
-        return $this->belongsTo(Kuliner::class, 'id_kuliner');
+        return $this->belongsTo(Kuliner::class, 'id_kuliner', 'id_kuliner');
     }
 }

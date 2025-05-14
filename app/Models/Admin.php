@@ -6,9 +6,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
-    protected $table = 'admin';
+    protected $table = 'admins';
     protected $primaryKey = 'id_admin';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'password'
