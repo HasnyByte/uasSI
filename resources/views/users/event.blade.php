@@ -1,0 +1,121 @@
+@extends('layouts.users')
+
+@section('content')
+    <!-- Hero Section -->
+    <div class="relative text-white bg-cover bg-center h-64" style="background-image: url('https://parksidehotels.co.id/wp-content/uploads/2025/02/494C204A-83C4-4504-920D-97F684A2D5FD.jpeg');">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/20">
+            <div class="absolute inset-0 flex flex-col items-center justify-center z-10 text-center">
+                <div class="font-bold text-3xl">
+                    What's on In Aceh
+                </div>
+                <div class="pt-2 text-lg max-w-2xl">
+                    Looking for plans this week? Explore the latest art, music, shows, and festivals—start your adventure now!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-8">
+        <div class="container mx-auto px-8">
+            <div class="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
+                <!-- Judul -->
+                <div class="w-full lg:w-3/12">
+                    <div class="font-bold text-lg">
+                        Events
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="w-full lg:w-9/12">
+                    <div class="flex flex-col lg:flex-row items-center justify-end gap-4">
+                        <div class="w-fit max-w-sm ml-auto">
+                            <div class="flex rounded-[12px] shadow-sm overflow-hidden">
+                                <input type="text" placeholder="Type" class="px-4 py-2 border border-gray-300 rounded-l-[12px] focus:outline-none focus:ring-2 focus:ring-[#2A933C]"/>
+                                <button type="button" class="bg-[#2A933C] text-white px-4 py-2 font-medium text-sm rounded-r-[12px] hover:bg-green-700 transition">
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Sidebar Filter -->
+                <div class="w-full lg:w-3/12">
+                    <div class="bg-white w-full p-3 mb-3 rounded-[10px] border border-gray-200">
+                        <div class="pb-1 text-gray-500 text-[12px] font-medium">
+                            CATEGORY
+                        </div>
+
+                        <!-- Dropdown Wrapper -->
+                        <div class="mt-2">
+                            <button id="categoryDropdownBtn" type="button" class="w-full flex items-center justify-between border border-gray-200 rounded-[5px] px-4 py-2 bg-white text-gray-400 font-medium text-sm focus:outline-none">
+                                All Categories
+                                <svg id="dropdownArrow" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown List -->
+                            <div id="categoryDropdown" class="mt-3 border-t border-gray-200 pt-2 space-y-1" style="display: none;">
+                                <a href="#" class="block px-2 py-1 hover:bg-gray-100 rounded text-sm text-gray-700">Music</a>
+                                <a href="#" class="block px-2 py-1 hover:bg-gray-100 rounded text-sm text-gray-700">Culture</a>
+                                <a href="#" class="block px-2 py-1 hover:bg-gray-100 rounded text-sm text-gray-700">Educations</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Grid -->
+                <div class="w-full lg:w-9/12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @foreach ($events as $event)
+                            <a href="{{ route('event.show', $event->id_event) }}" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
+                                <!-- Gambar -->
+                                <div
+                                    class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+                                    style="background-image: url('{{ $event->flyer_event ? asset($event->flyer_event) : 'https://via.placeholder.com/400x300' }}');">
+                                </div>
+
+                                <!-- Overlay dan Teks -->
+                                <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
+                                    <h3 class="font-semibold text-lg text-white">
+                                        {{ $event->nama_event }}
+                                    </h3>
+
+                                    <!-- Visit + Status -->
+                                    <div class="mt-2 flex items-center justify-between">
+                                        <div class="inline-flex items-center text-sm font-medium text-white transition">
+                                            Visit
+                                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </div>
+                                        <span class="ml-2 px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded-full">
+                                            {{ \Carbon\Carbon::createFromFormat('d/m/Y H:i', explode(' - ', $event->tanggal_event)[0])->isFuture() ? 'Upcoming' : 'Sedang Berlangsung' }}
+                                        </span>
+                                    </div>
+
+                                    <!-- Waktu Acara -->
+                                    <div class="mt-1 text-xs text-gray-200">
+                                        {{ $event->tanggal_event }}
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex justify-center mt-8">
+                        {{ $events->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @include('components.footer')
+    <!-- load function js -->
+    <script src="{{ asset('js/dropdown.js') }}"></script>
+@endsection
