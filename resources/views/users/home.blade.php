@@ -1,33 +1,258 @@
 @extends('layouts.users')
 
 @section('content')
-<!-- Location and Search Bar -->
+
+<!-- Location Dropdown Component -->
 <div class="container mx-auto px-10 py-10">
     <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-        <div class="flex items-center mb-4 md:mb-0">
+        <div class="flex items-center mb-4 md:mb-0 relative">
             <img src="{{ asset('images/maps.svg') }}" alt="Location" class="w-5 h-5 mr-2">
-            <span class="font-medium">Banda Aceh, Aceh</span>
-            <img src="{{ asset('images/Options.svg') }}" alt="Dropdown" class="w-4 h-4 ml-1">
+            <!-- Location Dropdown -->
+            <div class="relative inline-block">
+                <button id="location-dropdown-button" class="flex items-center font-medium focus:outline-none">
+                    <span id="selected-location">Banda Aceh, Aceh</span>
+                    <img src="{{ asset('images/Options.svg') }}" alt="Dropdown" class="w-4 h-4 ml-1 transition-transform duration-200">
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div id="location-dropdown-menu" class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
+                    <div class="py-1">
+                        <a href="#" class="location-option block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600" data-value="Banda Aceh, Aceh">Banda Aceh, Aceh</a>
+                        <a href="#" class="location-option block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600" data-value="Aceh Besar, Aceh">Aceh Besar, Aceh</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- Hero Section -->
-<div class="container mx-auto px-10 pb-6">
-    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-        <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/2">
-                <img src="{{ asset('images/museum-tsunami.png') }}" alt="Museum Tsunami Banda Aceh" class="w-full h-[350px] object-cover">
+<div class="container mx-auto px-8 py-8 relative">
+    <!-- Hero Carousel Container -->
+    <div class="overflow-hidden rounded-xl shadow-lg" id="hero-container">
+        <div class="flex transition-transform duration-500 ease-in-out" id="hero-slider">
+            <!-- Hero Slide 1: Museum Tsunami -->
+            <div class="w-full flex-shrink-0">
+                <div class="bg-white overflow-hidden">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/2 relative overflow-hidden">
+                            <img src="{{ asset('images/museum-tsunami.png') }}" alt="Museum Tsunami Banda Aceh" class="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                            <h2 class="text-green-600 text-sm font-semibold uppercase tracking-wider mb-1">Destinasi Sejarah</h2>
+                            <h1 class="text-3xl font-bold text-gray-800 mb-4">Museum Tsunami Banda Aceh</h1>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Museum Tsunami Banda Aceh adalah monumen peringatan yang dibangun untuk mengenang tragedi tsunami dahsyat yang melanda Aceh pada 26 Desember 2004. Dirancang tidak hanya sebagai monumen peringatan yang mengharukan untuk mengenang korban, tetapi juga sebagai pusat edukasi.
+                            </p>
+                            <a href="#" class="self-start px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 hover:shadow-md flex items-center group">
+                                <span>Selengkapnya</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="md:w-1/2 p-6">
-                <h1 class="text-3xl font-bold text-green-600 mb-2 py-6">Museum Tsunami Banda Aceh: Monumen Peringatan dan Edukasi</h1>
-                <p class="text-gray-700 mb-4 mr-8">
-                    Museum Tsunami Banda Aceh adalah monumen peringatan yang dibangun untuk mengenang tragedi tsunami dahsyat yang melanda Aceh pada 26 Desember 2004. Dirancang tidak hanya sebagai monumen peringatan yang mengharukan untuk mengenang korban, tetapi juga sebagai pusat edukasi.
-                </p>
+
+            <!-- Hero Slide 2: Masjid Raya Baiturrahman -->
+            <div class="w-full flex-shrink-0">
+                <div class="bg-white overflow-hidden">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/2 relative overflow-hidden">
+                            <img src="{{ asset('images/masjid-raya.png') }}" alt="Masjid Raya Baiturrahman" class="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                            <h2 class="text-green-600 text-sm font-semibold uppercase tracking-wider mb-1">Ikon Spiritual</h2>
+                            <h1 class="text-3xl font-bold text-gray-800 mb-4">Masjid Raya Baiturrahman</h1>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Masjid Raya Baiturrahman merupakan ikon kota Banda Aceh yang memiliki arsitektur megah dengan kubah hitam yang khas. Masjid bersejarah ini menjadi saksi bisu tsunami 2004 dan tetap berdiri kokoh, menjadikannya simbol ketahanan spiritual masyarakat Aceh.
+                            </p>
+                            <a href="#" class="self-start px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 hover:shadow-md flex items-center group">
+                                <span>Selengkapnya</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Slide 3: Pantai Lampuuk -->
+            <div class="w-full flex-shrink-0">
+                <div class="bg-white overflow-hidden">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/2 relative overflow-hidden">
+                            <img src="{{ asset('images/lampuuk.png') }}" alt="Pantai Lampuuk" class="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                            <h2 class="text-green-600 text-sm font-semibold uppercase tracking-wider mb-1">Pesona Bahari</h2>
+                            <h1 class="text-3xl font-bold text-gray-800 mb-4">Pantai Lampuuk</h1>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Pantai Lampuuk menyuguhkan pemandangan pantai berpasir putih dengan air laut biru jernih yang membentang sepanjang pesisir. Dikelilingi oleh bukit hijau, pantai ini menawarkan kombinasi sempurna dari keindahan alam bahari dan pegunungan di Aceh Besar.
+                            </p>
+                            <a href="#" class="self-start px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 hover:shadow-md flex items-center group">
+                                <span>Selengkapnya</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Slide 4: Museum Aceh -->
+            <div class="w-full flex-shrink-0">
+                <div class="bg-white overflow-hidden">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/2 relative overflow-hidden">
+                            <img src="{{ asset('images/museum-aceh.png') }}" alt="Museum Aceh" class="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                            <h2 class="text-green-600 text-sm font-semibold uppercase tracking-wider mb-1">Warisan Budaya</h2>
+                            <h1 class="text-3xl font-bold text-gray-800 mb-4">Museum Aceh</h1>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Museum Aceh menyimpan koleksi artefak bersejarah dan benda-benda budaya khas Aceh dari berbagai era. Didirikan sejak masa kolonial Belanda, museum ini menjadi pusat konservasi dan edukasi mengenai kekayaan warisan budaya masyarakat Aceh dari masa ke masa.
+                            </p>
+                            <a href="#" class="self-start px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 hover:shadow-md flex items-center group">
+                                <span>Selengkapnya</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Navigation Arrows - Placed inside the container but positioned absolute -->
+    <button id="hero-prev" class="absolute top-1/2 left-4 transform -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm hover:bg-white/70 text-green-600 w-10 h-10 flex items-center justify-center rounded-full shadow-md transition-all duration-300 border border-white/20 opacity-70 hover:opacity-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    
+    <button id="hero-next" class="absolute top-1/2 right-4 transform -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm hover:bg-white/70 text-green-600 w-10 h-10 flex items-center justify-center rounded-full shadow-md transition-all duration-300 border border-white/20 opacity-70 hover:opacity-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+
+    <!-- Pagination Dots -->
+    <div class="flex justify-center mt-6">
+        <div class="flex space-x-3" id="hero-dots">
+            <button class="h-2.5 w-2.5 rounded-full bg-green-600 hero-dot active" data-index="0"></button>
+            <button class="h-2.5 w-2.5 rounded-full bg-gray-300 hero-dot" data-index="1"></button>
+            <button class="h-2.5 w-2.5 rounded-full bg-gray-300 hero-dot" data-index="2"></button>
+            <button class="h-2.5 w-2.5 rounded-full bg-gray-300 hero-dot" data-index="3"></button>
+        </div>
+    </div>
 </div>
+
+<!-- JavaScript for Hero Carousel -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroSlider = document.getElementById('hero-slider');
+        const heroContainer = document.getElementById('hero-container');
+        const heroDots = document.querySelectorAll('.hero-dot');
+        const heroNext = document.getElementById('hero-next');
+        const heroPrev = document.getElementById('hero-prev');
+        
+        let currentIndex = 0;
+        const slideCount = document.querySelectorAll('#hero-slider > div').length;
+        
+        // Function to go to a specific slide
+        function goToSlide(index) {
+            // Handle index boundaries
+            if (index < 0) index = slideCount - 1;
+            if (index >= slideCount) index = 0;
+            
+            currentIndex = index;
+            
+            // Update transform to show current slide
+            heroSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Update active dot
+            heroDots.forEach((dot, i) => {
+                if (i === currentIndex) {
+                    dot.classList.add('bg-green-600', 'active');
+                    dot.classList.remove('bg-gray-300');
+                } else {
+                    dot.classList.remove('bg-green-600', 'active');
+                    dot.classList.add('bg-gray-300');
+                }
+            });
+        }
+        
+        // Next button
+        heroNext.addEventListener('click', () => {
+            goToSlide(currentIndex + 1);
+        });
+        
+        // Previous button
+        heroPrev.addEventListener('click', () => {
+            goToSlide(currentIndex - 1);
+        });
+        
+        // Dot navigation
+        heroDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+            });
+        });
+        
+        // Auto slide every 6 seconds
+        let autoSlideInterval = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 6000);
+        
+        // Reset interval when user interacts
+        [heroNext, heroPrev, ...heroDots].forEach(control => {
+            control.addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(() => {
+                    goToSlide(currentIndex + 1);
+                }, 6000);
+            });
+        });
+        
+        // Handle touch/swipe for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        heroContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+        
+        heroContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, {passive: true});
+        
+        function handleSwipe() {
+            const swipeThreshold = 75;
+            
+            if (touchStartX - touchEndX > swipeThreshold) {
+                // Swipe left, go to next slide
+                goToSlide(currentIndex + 1);
+            } else if (touchEndX - touchStartX > swipeThreshold) {
+                // Swipe right, go to previous slide
+                goToSlide(currentIndex - 1);
+            }
+        }
+        
+        // Initialize first slide
+        goToSlide(0);
+    });
+</script>
 
 <!-- Popular Destinations-->
 <div class="container mx-auto px-10 py-20">
@@ -465,6 +690,47 @@
                 mobileMenu.classList.toggle('hidden');
             });
         }
+    });
+</script>
+
+<!-- JavaScript for Dropdown Functionality -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownButton = document.getElementById('location-dropdown-button');
+        const dropdownMenu = document.getElementById('location-dropdown-menu');
+        const selectedLocation = document.getElementById('selected-location');
+        const locationOptions = document.querySelectorAll('.location-option');
+        
+        // Toggle dropdown visibility
+        dropdownButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('hidden');
+            // Rotate the dropdown arrow
+            const dropdownArrow = dropdownButton.querySelector('img');
+            dropdownArrow.style.transform = dropdownMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+        
+        // Handle option selection
+        locationOptions.forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.preventDefault();
+                const value = this.getAttribute('data-value');
+                selectedLocation.textContent = value;
+                dropdownMenu.classList.add('hidden');
+                dropdownButton.querySelector('img').style.transform = 'rotate(0deg)';
+                
+                // You can also trigger an event or call a function to handle location change
+                // Example: updateContent(value);
+            });
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.add('hidden');
+                dropdownButton.querySelector('img').style.transform = 'rotate(0deg)';
+            }
+        });
     });
 </script>
 
