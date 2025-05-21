@@ -29,10 +29,14 @@ class BerandaController extends Controller
         // Ambil kuliner populer (misal tampilkan 4 wisata)
         $popularKuliner = $kulinerWithRating->take(4);
 
+        // Get 3 random events from the database
+        $randomEvents = \App\Models\Event::inRandomOrder()->take(3)->get();
+
         return view('users.home', [
             'heroWisata' => $heroWisata,
             'popularWisata' => $popularWisata,
             'popularKuliner' => $popularKuliner,
+            'randomEvents' => $randomEvents,
         ]);
     }
 }

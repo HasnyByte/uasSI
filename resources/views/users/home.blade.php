@@ -19,21 +19,30 @@
     </div>
 </div>
 
-<!-- Hero Section -->
+<!-- Hero Section - Now Clickable -->
 <div class="container mx-auto px-10 pb-6">
-    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+    <a href="{{ route('wisata.show', ['id' => $heroWisata->id_destinasi]) }}" class="block bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
         <div class="flex flex-col md:flex-row">
             <div class="md:w-1/2">
-                <img src="{{ asset('storage/' . $heroWisata->foto_wisata) }}" alt="{{ $heroWisata->nama_wisata }}" class="w-full h-[350px] object-cover">
+                @php
+                    $heroImageUrl = Str::startsWith($heroWisata->foto_wisata, ['http://', 'https://']) 
+                        ? $heroWisata->foto_wisata 
+                        : asset('storage/' . $heroWisata->foto_wisata);
+                @endphp
+                <img src="{{ $heroImageUrl }}" alt="{{ $heroWisata->nama_wisata }}" class="w-full h-[350px] object-cover transition-transform duration-300 hover:scale-105">
             </div>
             <div class="md:w-1/2 p-6">
-                <h1 class="text-3xl font-bold text-green-600 mb-2 py-6">{{ $heroWisata->nama_wisata }}</h1>
+                <h1 class="text-3xl font-bold text-green-600 mb-2 py-6 hover:text-green-700 transition-colors duration-300">{{ $heroWisata->nama_wisata }}</h1>
                 <p class="text-gray-700 mb-4 mr-8">
                     {{ $heroWisata->deskripsi_wisata }}
                 </p>
+                <div class="flex items-center text-green-600 mt-4">
+                    <span class="text-sm font-medium">Klik untuk melihat detail</span>
+                    <img src="{{ asset('images/right-line.svg') }}" alt="Detail" class="ml-2 w-4 h-4">
+                </div>
             </div>
         </div>
-    </div>
+    </a>
 </div>
 
 <!-- Popular Destinations -->
@@ -49,30 +58,35 @@
         </a>
     </div>
 
-    <div class="flex space-x-6 overflow-x-scroll pb-6 scrollbar-hide">
-        @foreach ($popularWisata as $item)
-        <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0">
-            <img src="{{ asset('storage/' . $item->foto_wisata) }}" alt="{{ $item->nama_wisata }}" class="w-full h-48 object-cover">
-            <div class="p-4">
-                <h4 class="text-lg font-semibold text-green-600">{{ $item->nama_wisata }}</h4>
-                <div class="flex items-center text-gray-500 mt-2">
-                    <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
-                    <span>{{ $item->lokasi_wisata }}</span>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        @foreach ($popularWisata->take(8) as $item)
+            <a href="{{ route('wisata.show', ['id' => $item->id_destinasi]) }}" class="block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                @php
+                    $gambarUrl = Str::startsWith($item->foto_wisata, ['http://', 'https://']) 
+                        ? $item->foto_wisata 
+                        : asset('storage/' . $item->foto_wisata);
+                @endphp
+                <div class="h-48 overflow-hidden">
+                    <img src="{{ $gambarUrl }}" alt="{{ $item->nama_wisata }}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                 </div>
-                <div class="flex items-center justify-between mt-3">
-                    <div class="flex items-center">
-                        <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 text-yellow-400">
-                        <span class="ml-1 text-gray-600">{{ number_format($item->review_avg_rating, 1) }}</span>
+                <div class="p-4">
+                    <h4 class="text-lg font-semibold text-green-600">{{ $item->nama_wisata }}</h4>
+                    <div class="flex items-center text-gray-500 mt-2">
+                        <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-5 h-5 mr-2">
+                        <span>{{ $item->location_id }}</span>
                     </div>
-                    <span class="text-gray-500 text-sm">({{ $item->review->count() }})</span>
+                    <div class="flex items-center justify-between mt-2">
+                        <div class="flex items-center">
+                            <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-5 h-5 text-yellow-400">
+                            <span class="ml-1 text-gray-600">{{ number_format($item->review_avg_rating, 1) }}</span>
+                        </div>
+                        <span class="text-gray-500 text-sm">({{ $item->review->count() }})</span>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </a>
         @endforeach
     </div>
 </div>
-
-
 
 <!-- Culinary Recommendations -->
 <div class="container mx-auto px-10 py-20">
@@ -87,83 +101,64 @@
         </a>
     </div>
 
-    <div class="flex space-x-6 overflow-x-scroll pb-6 scrollbar-hide">
-        @foreach ($popularKuliner as $item)
-        <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0">
-            <img src="{{ asset('storage/' . $item->foto_kuliner) }}" alt="{{ $item->nama_kuliner }}" class="w-full h-48 object-cover">
-            <div class="p-4">
-                <h4 class="text-lg font-semibold text-green-600">{{ $item->nama_kuliner }}</h4>
-                <div class="flex items-center text-gray-500 mt-2">
-                    <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
-                    <span>{{ $item->lokasi_kuliner }}</span>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        @foreach ($popularKuliner->take(8) as $item)
+            <a href="{{ route('kuliner.show', ['id' => $item->id_kuliner]) }}" class="block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                @php
+                    $gambarUrl = Str::startsWith($item->foto_kuliner, ['http://', 'https://']) 
+                        ? $item->foto_kuliner 
+                        : asset('storage/' . $item->foto_kuliner);
+                @endphp
+                <div class="h-48 overflow-hidden">
+                    <img src="{{ $gambarUrl }}" alt="{{ $item->nama_kuliner }}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                 </div>
-                <div class="flex items-center justify-between mt-3">
-                    <div class="flex items-center">
-                        <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 text-yellow-400">
-                        <span class="ml-1 text-gray-600">{{ number_format($item->review_avg_rating, 1) }}</span>
+                <div class="p-4">
+                    <h4 class="text-lg font-semibold text-green-600">{{ $item->nama_kuliner }}</h4>
+                    <div class="flex items-center text-gray-500 mt-2">
+                        <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-5 h-5 mr-2">
+                        <span>{{ $item->location_id }}</span>
                     </div>
-                    <span class="text-gray-500 text-sm">({{ $item->review->count() }})</span>
+                    <div class="flex items-center justify-between mt-2">
+                        <div class="flex items-center">
+                            <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-5 h-5 text-yellow-400">
+                            <span class="ml-1 text-gray-600">{{ number_format($item->review_avg_rating, 1) }}</span>
+                        </div>
+                        <span class="text-gray-500 text-sm">({{ $item->review->count() }})</span>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </a>
         @endforeach
     </div>
 </div>
 
-<!-- Events Section -->
-<div class="container mx-auto px-4 py-8 text-center">
+<!-- Events Section - Now Clickable -->
+<div class="container mx-auto px-10 py-8 text-center">
     <h3 class="text-2xl md:text-3xl font-bold text-green-600 mb-2">Daftar Event Aceh</h3>
     <p class="text-gray-600 mb-8">Temukan Event menarik dan catat jadwalnya!</p>
 
-    <div class="relative flex items-center justify-center">
-        <!-- Left arrow -->
-        <button class="absolute left-0 z-10 bg-gray-100 hover:bg-gray-200 p-2 rounded-full shadow-md">
-            <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-        </button>
-
-        <!-- Cards Container -->
-        <div class="flex gap-6 overflow-x-auto scrollbar-hide px-10">
-            <!-- Event Card 1 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden w-120 flex-shrink-0 scroll-snap-center">
-                <img src="{{ asset('images/blue-fest.png') }}" alt="Blue Fest Aceh" class="w-full h-48 object-cover">
-                <div class="p-4 text-left">
-                    <h4 class="text-green-600 font-semibold text-lg mb-1">Blue Fest Aceh</h4>
-                    <p class="text-red-500 font-semibold text-sm mb-2">IDR 222K</p>
-                    <div class="flex items-center text-sm text-gray-600 mb-1">
-                        <img src="{{ asset('images/date.svg') }}" class="w-5 h-5 mr-2">10 May 2025
-                    </div>
-                    <div class="flex items-center text-sm text-gray-600">
-                        <img src="{{ asset('images/g-maps.svg') }}" class="w-5 h-5 mr-2">Taman Seni & Budaya Aceh
-                    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        @foreach ($randomEvents as $event)
+        <a href="{{ route('event.show', ['id' => $event->id_event]) }}" class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0 mr-6 snap-start hover:shadow-lg transition-shadow duration-300 cursor-pointer block">
+            <div class="overflow-hidden">
+                <img src="{{ asset($event->flyer_event ?? 'images/default.jpg') }}" alt="{{ $event->nama_event }}" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+            </div>
+            <div class="p-4 text-left">
+                <h4 class="text-green-600 font-semibold text-lg mb-1 hover:text-green-700 transition-colors duration-300">{{ $event->nama_event }}</h4>
+                <p class="text-red-500 font-semibold text-sm mb-2">{{ $event->harga_tiket }}</p>
+                <div class="flex items-center text-sm text-gray-600 mb-1">
+                    <img src="{{ asset('images/date.svg') }}" class="w-5 h-5 mr-2">{{ \Carbon\Carbon::parse($event->tanggal_event)->format('d M Y') }}
+                </div>
+                <div class="flex items-center text-sm text-gray-600 mb-3">
+                    <img src="{{ asset('images/g-maps.svg') }}" class="w-5 h-5 mr-2">{{ $event->location_id }}
+                </div>
+                <div class="flex items-center text-green-600 text-sm">
+                    <span class="font-medium">Lihat detail event</span>
+                    <img src="{{ asset('images/right-line.svg') }}" alt="Detail" class="ml-2 w-3 h-3">
                 </div>
             </div>
-
-            <!-- Event Card 2 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden w-120 flex-shrink-0 scroll-snap-center">
-                <img src="{{ asset('images/aceh-running.png') }}" alt="Aceh Running Festival" class="w-full h-48 object-cover">
-                <div class="p-4 text-left">
-                    <h4 class="text-green-600 font-semibold text-lg mb-1">Aceh Running Festival</h4>
-                    <p class="text-red-500 font-semibold text-sm mb-2">IDR 180K</p>
-                    <div class="flex items-center text-sm text-gray-600 mb-1">
-                        <img src="{{ asset('images/date.svg') }}" class="w-5 h-5 mr-2">9 Agustus 2025
-                    </div>
-                    <div class="flex items-center text-sm text-gray-600">
-                        <img src="{{ asset('images/g-maps.svg') }}" class="w-5 h-5 mr-2">Taman Seni & Budaya Aceh
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right arrow -->
-        <button class="absolute right-0 z-10 bg-gray-100 hover:bg-gray-200 p-2 rounded-full shadow-md">
-            <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-        </button>
+        </a>
+        @endforeach
     </div>
-</div>
 </div>
 
 @include('components.footer')
@@ -173,18 +168,20 @@
         // Destination section
         const destinationScroll = document.getElementById('destination-scroll');
         const destinationDots = document.querySelectorAll('.destination-dot');
-        const destinationItems = destinationScroll.querySelectorAll('.scroll-snap-center');
-        const destinationItemWidth = destinationItems[0].offsetWidth + 24; // width + margin
+        const destinationItems = destinationScroll ? destinationScroll.querySelectorAll('.scroll-snap-center') : [];
+        const destinationItemWidth = destinationItems.length > 0 ? destinationItems[0].offsetWidth + 24 : 0; // width + margin
 
         // Culinary section
         const culinaryScroll = document.getElementById('culinary-scroll');
         const culinaryDots = document.querySelectorAll('.culinary-dot');
-        const culinaryItems = culinaryScroll.querySelectorAll('.scroll-snap-center');
-        const culinaryItemWidth = culinaryItems[0].offsetWidth + 24; // width + margin
+        const culinaryItems = culinaryScroll ? culinaryScroll.querySelectorAll('.scroll-snap-center') : [];
+        const culinaryItemWidth = culinaryItems.length > 0 ? culinaryItems[0].offsetWidth + 24 : 0; // width + margin
 
         // Destination Dots Click Event
         destinationDots.forEach(dot => {
             dot.addEventListener('click', function() {
+                if (!destinationScroll) return;
+                
                 const index = parseInt(this.getAttribute('data-index'));
                 const scrollPos = index * destinationItemWidth;
 
@@ -204,6 +201,8 @@
         // Culinary Dots Click Event
         culinaryDots.forEach(dot => {
             dot.addEventListener('click', function() {
+                if (!culinaryScroll) return;
+                
                 const index = parseInt(this.getAttribute('data-index'));
                 const scrollPos = index * culinaryItemWidth;
 
@@ -221,34 +220,38 @@
         });
 
         // Scroll event for destination
-        destinationScroll.addEventListener('scroll', function() {
-            const scrollPos = this.scrollLeft;
-            const index = Math.round(scrollPos / destinationItemWidth);
+        if (destinationScroll) {
+            destinationScroll.addEventListener('scroll', function() {
+                const scrollPos = this.scrollLeft;
+                const index = Math.round(scrollPos / destinationItemWidth);
 
-            // Update dots
-            destinationDots.forEach(d => d.classList.remove('bg-green-600', 'active'));
-            destinationDots.forEach(d => d.classList.add('bg-gray-300'));
+                // Update dots
+                destinationDots.forEach(d => d.classList.remove('bg-green-600', 'active'));
+                destinationDots.forEach(d => d.classList.add('bg-gray-300'));
 
-            if (destinationDots[index]) {
-                destinationDots[index].classList.remove('bg-gray-300');
-                destinationDots[index].classList.add('bg-green-600', 'active');
-            }
-        });
+                if (destinationDots[index]) {
+                    destinationDots[index].classList.remove('bg-gray-300');
+                    destinationDots[index].classList.add('bg-green-600', 'active');
+                }
+            });
+        }
 
         // Scroll event for culinary
-        culinaryScroll.addEventListener('scroll', function() {
-            const scrollPos = this.scrollLeft;
-            const index = Math.round(scrollPos / culinaryItemWidth);
+        if (culinaryScroll) {
+            culinaryScroll.addEventListener('scroll', function() {
+                const scrollPos = this.scrollLeft;
+                const index = Math.round(scrollPos / culinaryItemWidth);
 
-            // Update dots
-            culinaryDots.forEach(d => d.classList.remove('bg-green-600', 'active'));
-            culinaryDots.forEach(d => d.classList.add('bg-gray-300'));
+                // Update dots
+                culinaryDots.forEach(d => d.classList.remove('bg-green-600', 'active'));
+                culinaryDots.forEach(d => d.classList.add('bg-gray-300'));
 
-            if (culinaryDots[index]) {
-                culinaryDots[index].classList.remove('bg-gray-300');
-                culinaryDots[index].classList.add('bg-green-600', 'active');
-            }
-        });
+                if (culinaryDots[index]) {
+                    culinaryDots[index].classList.remove('bg-gray-300');
+                    culinaryDots[index].classList.add('bg-green-600', 'active');
+                }
+            });
+        }
 
         // Add CSS for scrollbar hiding and snap scrolling
         const style = document.createElement('style');
@@ -281,12 +284,12 @@
         document.head.appendChild(style);
 
         // Set first dot as active for both sections
-        if (destinationDots[0]) {
+        if (destinationDots.length > 0) {
             destinationDots[0].classList.remove('bg-gray-300');
             destinationDots[0].classList.add('bg-green-600', 'active');
         }
 
-        if (culinaryDots[0]) {
+        if (culinaryDots.length > 0) {
             culinaryDots[0].classList.remove('bg-gray-300');
             culinaryDots[0].classList.add('bg-green-600', 'active');
         }
@@ -440,6 +443,18 @@
     /* Custom scroll snap behavior */
     .custom-snap-scroll {
         scroll-padding: 1rem;
+    }
+
+    /* Hero section hover effects */
+    .hero-section:hover {
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
+    }
+
+    /* Event card hover effects */
+    .event-card:hover {
+        transform: translateY(-3px);
+        transition: all 0.3s ease;
     }
 </style>
 @endsection
