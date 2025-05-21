@@ -58,7 +58,7 @@
             </div>
 
             <!-- Grid Wisata -->
-            <div class="w-full lg:w-9/12">
+            <section class="w-full lg:w-9/12">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @forelse($wisata as $item)
                         @php
@@ -66,13 +66,11 @@
                                 ? $item->foto_wisata 
                                 : asset('storage/' . $item->foto_wisata);
                         @endphp
-                        <a href="{{ url('/wisata/' . $item->id) }}" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
-                            <!-- Gambar -->
+                        <a href="{{ route('wisata.show', ['id' => $item->id_destinasi]) }}" class="block relative h-48 rounded-lg overflow-hidden shadow-md group">
                             <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{ $gambarUrl }}');"></div>
-
-                            <!-- Overlay dan teks -->
                             <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
                                 <h3 class="font-semibold text-lg text-white">{{ $item->nama_wisata }}</h3>
+                                <p class="text-xs text-white">ID Debug: {{ $item->id_destinasi }}</p>
                                 <div class="mt-2 inline-flex items-center text-sm font-medium text-white transition">
                                     Visit
                                     <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -119,7 +117,7 @@
                         @endif
                     </ul>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
 </section>

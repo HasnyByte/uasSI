@@ -27,17 +27,12 @@
         <div class="w-full lg:w-8/12">
             <!-- Main Image -->
             <div class="w-full h-96 mb-4 rounded-lg overflow-hidden">
-                <img src="{{ asset('images/masjid-raya-1.png') }}" alt="Masjid Raya Baiturrahman" class="w-full h-full object-cover">
+                <img src="{{ $wisata->foto_wisata }}" alt="{{ $wisata->nama }}" class="w-full h-full object-cover">
             </div>
             
-            <!-- Gallery Thumbnails -->
-            <div class="mb-6 rounded-lg overflow-hidden">
-                <img src="{{ $destinasi->foto_wisata }}" alt="{{ $destinasi->nama }}" class="w-full h-64 object-cover rounded-lg shadow">
-            </div>
-
             <!-- Description -->
             <div class="mb-8">
-                <h2 class="text-2xl font-bold mb-4">{{ $wisata->nama_wisata }}</h2>
+                <!-- <h2 class="text-2xl font-bold mb-4">{{ $wisata->nama_wisata }}</h2> -->
                 <div class="prose max-w-none space-y-4 text-gray-700">
                     {!! nl2br(e($wisata->deskripsi_wisata)) !!}
                 </div>
@@ -49,24 +44,24 @@
             <div class="bg-white rounded-lg shadow-md p-6 mb-6">
                 <!-- Category Badge -->
                 <div class="mb-4">
-                    <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
+                    <!-- <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
                         Heritage
-                    </span>
+                    </span> -->
                 </div>
 
                 <!-- Info List -->
                 <div class="space-y-4">
                     <div class="flex items-start">
                         <span class="text-gray-600 w-1/3">Alamat</span>
-                        <span class="text-gray-900 font-medium w-2/3">Batoh, Lueng Bata, Banda Aceh City, Aceh 23122</span>
+                        <span class="text-gray-900 font-medium w-2/3">{{ $wisata->lokasi_wisata }}</span>
                     </div>
                     <div class="flex items-start">
                         <span class="text-gray-600 w-1/3">Jam Buka</span>
-                        <span class="text-gray-900 font-medium w-2/3">Setiap Hari 07:00:00 - 21:00:00</span>
+                        <span class="text-gray-900 font-medium w-2/3">{{ $wisata->jam_operasional }}</span>
                     </div>
                     <div class="flex items-start">
                         <span class="text-gray-600 w-1/3">Tiket</span>
-                        <span class="text-gray-900 font-medium w-2/3">Gratis</span>
+                        <span class="text-gray-900 font-medium w-2/3">{{ $wisata->tiket }}</span>
                     </div>
                 </div>
 

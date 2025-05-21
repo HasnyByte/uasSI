@@ -9,6 +9,7 @@ class DestinasiWisata extends Model
     protected $table = 'destinasi_wisata';
     protected $primaryKey = 'id_destinasi';
     public $timestamps = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'nama_wisata',

@@ -18,7 +18,7 @@
             </nav>
         </div>
 
-        <h1 class="text-3xl font-bold mb-6">Sate Matang Apaleh Geurugok</h1>
+        <h1 class="text-3xl font-bold mb-6">{{ $kuliner->nama_kuliner }}</h1>
 
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Main content area -->
