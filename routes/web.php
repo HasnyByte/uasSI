@@ -41,7 +41,9 @@ Route::get('/kuliner/{id}', [KulinerController::class, 'show'])
 Route::get('/event', [UserEventController::class, 'index'])->name('event');
 Route::get('/event/{id}', [UserEventController::class, 'show'])->name('event.show');
 Route::delete('/admin/event/{id}', [EventController::class, 'destroy'])->name('admin.event.destroy');
-Route::get('/review/{id}/create', [ReviewController::class, 'create'])->name('review.create');
+Route::get('/reviews', [ReviewController::class, 'index']);         // Admin lihat semua review
+Route::get('/reviews/{id}', [ReviewController::class, 'show']);     // Admin lihat satu review
+Route::post('/reviews', [ReviewController::class, 'store'])->name('review.store');        // User buat review
 Route::get('/info', [PageController::class, 'informationDesk'])->name('info.desk');
 
 /*

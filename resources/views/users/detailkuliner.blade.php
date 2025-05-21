@@ -36,7 +36,7 @@
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <span class="inline-block bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full mb-4">Kuliner</span>
 
-                    <div class="border-b pb-4 mb-4">
+                    <div class="pb-4 mb-4">
                         <div class="flex mb-2">
                             <span class="w-28 text-gray-600">Alamat</span>
                             <span class="flex-1">{{ $kuliner->lokasi_kuliner }}</span>
@@ -47,14 +47,7 @@
                         </div>
                     </div>
 
-                    <a href="tel:+6281234567890" class="flex justify-center items-center bg-[#2A933C] text-white py-3 px-4 rounded-lg mb-3 hover:bg-green-700 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                        Hubungi Via Telefon
-                    </a>
-
-                    <button class="flex justify-center items-center w-full border border-[#2A933C] text-[#2A933C] py-3 px-4 rounded-lg hover:bg-green-50 transition">
+                    <button onclick="openReviewModal()" class="block w-full border border-gray-300 text-gray-700 text-center py-3 rounded-lg hover:bg-gray-50 transition">
                         Review
                     </button>
                 </div>
@@ -111,6 +104,86 @@
             </div>
         </div>
     </div>
+    <!-- Review Modal -->
+    <div id="reviewModal" class="fixed inset-0 z-50 bg-gradient-to-b from-black/20 via-black/30 to-black/20 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+            <h2 class="text-xl font-bold mb-4">Tulis Review</h2>
+            <form id="reviewForm">
+                @csrf
+                <!-- Rating -->
+                <div class="flex items-center mb-4" id="starRating">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <svg onclick="setRating({{ $i }})"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-10 h-10 cursor-pointer text-gray-300 hover:text-yellow-400 transition-colors duration-150"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                            id="star-{{ $i }}">
+                            <path d="M12 .587l3.668 7.568L24 9.423l-6 5.847L19.335 24 12 19.897 4.665 24 6 15.27 0 9.423l8.332-1.268z"/>
+                        </svg>
+                    @endfor
+                </div>
+                <input type="hidden" name="rating" id="rating" value="0">
 
-    @include('components.footer')
+                <!-- Komentar -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm mb-1" for="komentar">Komentar (opsional)</label>
+                    <textarea name="komentar" id="komentar" rows="3" class="w-full border rounded p-2"></textarea>
+                </div>
+
+                <input type="hidden" name="tanggal_review" id="tanggal_review">
+                <input type="hidden" name="id_kuliner" value="{{ $kuliner->id_kuliner }}">
+
+                <div class="flex justify-end space-x-2">
+                    <button type="button" onclick="closeReviewModal()" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Kirim</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openReviewModal() {
+            document.getElementById('reviewModal').classList.remove('hidden');
+            document.getElementById('tanggal_review').value = new Date().toISOString().split('T')[0];
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModal').classList.add('hidden');
+        }
+
+        function setRating(rating) {
+            document.getElementById('rating').value = rating;
+            for (let i = 1; i <= 5; i++) {
+                const star = document.getElementById('star-' + i);
+                star.classList.remove('text-yellow-400');
+                star.classList.add(i <= rating ? 'text-yellow-400' : 'text-gray-300');
+            }
+        }
+
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+
+            fetch("{{ route('review.store') }}", {
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+                },
+                body: data
+            })
+            .then(async res => {
+                const json = await res.json();
+                if (res.ok) {
+                    alert("Review berhasil dikirim!");
+                    location.reload();
+                } else {
+                    alert(json.message || "Gagal mengirim review");
+                }
+            })
+            .catch(err => console.error("Error:", err));
+        });
+    </script>
+@include('components.footer')
 @endsection

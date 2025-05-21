@@ -130,9 +130,9 @@
 
             <!-- Review Button -->
             <div class="mt-6">
-                <a href="#" class="block w-full border border-gray-300 text-gray-700 text-center py-3 rounded-lg hover:bg-gray-50 transition">
+                <button onclick="openReviewModal()" class="block w-full border border-gray-300 text-gray-700 text-center py-3 rounded-lg hover:bg-gray-50 transition">
                     Review
-                </a>
+                </button>
             </div>
         </div>
         </div>
@@ -160,6 +160,88 @@
         </div>
     </div>
 </div>
+
+<!-- Review Modal -->
+<div id="reviewModal" class="fixed inset-0 z-50 bg-gradient-to-b from-black/20 via-black/30 to-black/20 flex items-center justify-center hidden">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+        <h2 class="text-xl font-bold mb-4">Tulis Review</h2>
+        <form id="reviewForm">
+            @csrf
+            <!-- Rating -->
+            <div class="flex items-center mb-4" id="starRating">
+                @for ($i = 1; $i <= 5; $i++)
+                    <svg onclick="setRating({{ $i }})"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 cursor-pointer text-gray-300 hover:text-yellow-400 transition-colors duration-150"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        id="star-{{ $i }}">
+                        <path d="M12 .587l3.668 7.568L24 9.423l-6 5.847L19.335 24 12 19.897 4.665 24 6 15.27 0 9.423l8.332-1.268z"/>
+                    </svg>
+                @endfor
+            </div>
+            <input type="hidden" name="rating" id="rating" value="0">
+
+            <!-- Komentar -->
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm mb-1" for="komentar">Komentar (opsional)</label>
+                <textarea name="komentar" id="komentar" rows="3" class="w-full border rounded p-2"></textarea>
+            </div>
+
+            <input type="hidden" name="tanggal_review" id="tanggal_review">
+            <input type="hidden" name="id_destinasi" value="{{ $wisata->id_destinasi }}">
+
+            <div class="flex justify-end space-x-2">
+                <button type="button" onclick="closeReviewModal()" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Batal</button>
+                <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Kirim</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openReviewModal() {
+        document.getElementById('reviewModal').classList.remove('hidden');
+        document.getElementById('tanggal_review').value = new Date().toISOString().split('T')[0];
+    }
+
+    function closeReviewModal() {
+        document.getElementById('reviewModal').classList.add('hidden');
+    }
+
+    function setRating(rating) {
+        document.getElementById('rating').value = rating;
+        for (let i = 1; i <= 5; i++) {
+            const star = document.getElementById('star-' + i);
+            star.classList.remove('text-yellow-400');
+            star.classList.add(i <= rating ? 'text-yellow-400' : 'text-gray-300');
+        }
+    }
+
+    document.getElementById('reviewForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+
+        fetch("{{ route('review.store') }}", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+            },
+            body: data
+        })
+        .then(async res => {
+            const json = await res.json();
+            if (res.ok) {
+                alert("Review berhasil dikirim!");
+                location.reload();
+            } else {
+                alert(json.message || "Gagal mengirim review");
+            }
+        })
+        .catch(err => console.error("Error:", err));
+    });
+</script>
 
 @include('components.footer')
 @endsection
