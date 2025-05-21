@@ -45,11 +45,6 @@
                             <p class="text-gray-600 mb-6 leading-relaxed">
                                 Museum Tsunami Banda Aceh adalah monumen peringatan yang dibangun untuk mengenang tragedi tsunami dahsyat yang melanda Aceh pada 26 Desember 2004. Dirancang tidak hanya sebagai monumen peringatan yang mengharukan untuk mengenang korban, tetapi juga sebagai pusat edukasi.
                             </p>
-                            <a href="#" class="self-start px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 hover:shadow-md flex items-center group">
-                                <span>Selengkapnya</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
                             </a>
                         </div>
                     </div>
@@ -61,7 +56,7 @@
                 <div class="bg-white overflow-hidden">
                     <div class="flex flex-col md:flex-row">
                         <div class="md:w-1/2 relative overflow-hidden">
-                            <img src="{{ asset('images/masjid-raya.png') }}" alt="Masjid Raya Baiturrahman" class="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500">
+                            <img src="{{ asset('images/masjid-raya-1.png') }}" alt="Masjid Raya Baiturrahman" class="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div class="md:w-1/2 p-8 flex flex-col justify-center">
@@ -70,11 +65,6 @@
                             <p class="text-gray-600 mb-6 leading-relaxed">
                                 Masjid Raya Baiturrahman merupakan ikon kota Banda Aceh yang memiliki arsitektur megah dengan kubah hitam yang khas. Masjid bersejarah ini menjadi saksi bisu tsunami 2004 dan tetap berdiri kokoh, menjadikannya simbol ketahanan spiritual masyarakat Aceh.
                             </p>
-                            <a href="#" class="self-start px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 hover:shadow-md flex items-center group">
-                                <span>Selengkapnya</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
                             </a>
                         </div>
                     </div>
@@ -95,11 +85,6 @@
                             <p class="text-gray-600 mb-6 leading-relaxed">
                                 Pantai Lampuuk menyuguhkan pemandangan pantai berpasir putih dengan air laut biru jernih yang membentang sepanjang pesisir. Dikelilingi oleh bukit hijau, pantai ini menawarkan kombinasi sempurna dari keindahan alam bahari dan pegunungan di Aceh Besar.
                             </p>
-                            <a href="#" class="self-start px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 hover:shadow-md flex items-center group">
-                                <span>Selengkapnya</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
                             </a>
                         </div>
                     </div>
@@ -120,11 +105,6 @@
                             <p class="text-gray-600 mb-6 leading-relaxed">
                                 Museum Aceh menyimpan koleksi artefak bersejarah dan benda-benda budaya khas Aceh dari berbagai era. Didirikan sejak masa kolonial Belanda, museum ini menjadi pusat konservasi dan edukasi mengenai kekayaan warisan budaya masyarakat Aceh dari masa ke masa.
                             </p>
-                            <a href="#" class="self-start px-6 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 hover:shadow-md flex items-center group">
-                                <span>Selengkapnya</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
                             </a>
                         </div>
                     </div>
@@ -156,103 +136,6 @@
         </div>
     </div>
 </div>
-
-<!-- JavaScript for Hero Carousel -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const heroSlider = document.getElementById('hero-slider');
-        const heroContainer = document.getElementById('hero-container');
-        const heroDots = document.querySelectorAll('.hero-dot');
-        const heroNext = document.getElementById('hero-next');
-        const heroPrev = document.getElementById('hero-prev');
-        
-        let currentIndex = 0;
-        const slideCount = document.querySelectorAll('#hero-slider > div').length;
-        
-        // Function to go to a specific slide
-        function goToSlide(index) {
-            // Handle index boundaries
-            if (index < 0) index = slideCount - 1;
-            if (index >= slideCount) index = 0;
-            
-            currentIndex = index;
-            
-            // Update transform to show current slide
-            heroSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            
-            // Update active dot
-            heroDots.forEach((dot, i) => {
-                if (i === currentIndex) {
-                    dot.classList.add('bg-green-600', 'active');
-                    dot.classList.remove('bg-gray-300');
-                } else {
-                    dot.classList.remove('bg-green-600', 'active');
-                    dot.classList.add('bg-gray-300');
-                }
-            });
-        }
-        
-        // Next button
-        heroNext.addEventListener('click', () => {
-            goToSlide(currentIndex + 1);
-        });
-        
-        // Previous button
-        heroPrev.addEventListener('click', () => {
-            goToSlide(currentIndex - 1);
-        });
-        
-        // Dot navigation
-        heroDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                goToSlide(index);
-            });
-        });
-        
-        // Auto slide every 6 seconds
-        let autoSlideInterval = setInterval(() => {
-            goToSlide(currentIndex + 1);
-        }, 6000);
-        
-        // Reset interval when user interacts
-        [heroNext, heroPrev, ...heroDots].forEach(control => {
-            control.addEventListener('click', () => {
-                clearInterval(autoSlideInterval);
-                autoSlideInterval = setInterval(() => {
-                    goToSlide(currentIndex + 1);
-                }, 6000);
-            });
-        });
-        
-        // Handle touch/swipe for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        heroContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, {passive: true});
-        
-        heroContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, {passive: true});
-        
-        function handleSwipe() {
-            const swipeThreshold = 75;
-            
-            if (touchStartX - touchEndX > swipeThreshold) {
-                // Swipe left, go to next slide
-                goToSlide(currentIndex + 1);
-            } else if (touchEndX - touchStartX > swipeThreshold) {
-                // Swipe right, go to previous slide
-                goToSlide(currentIndex - 1);
-            }
-        }
-        
-        // Initialize first slide
-        goToSlide(0);
-    });
-</script>
 
 <!-- Popular Destinations-->
 <div class="container mx-auto px-10 py-20">
@@ -521,6 +404,103 @@
 </div>
 
 @include('components.footer')
+
+<!-- JavaScript for Hero Carousel -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroSlider = document.getElementById('hero-slider');
+        const heroContainer = document.getElementById('hero-container');
+        const heroDots = document.querySelectorAll('.hero-dot');
+        const heroNext = document.getElementById('hero-next');
+        const heroPrev = document.getElementById('hero-prev');
+        
+        let currentIndex = 0;
+        const slideCount = document.querySelectorAll('#hero-slider > div').length;
+        
+        // Function to go to a specific slide
+        function goToSlide(index) {
+            // Handle index boundaries
+            if (index < 0) index = slideCount - 1;
+            if (index >= slideCount) index = 0;
+            
+            currentIndex = index;
+            
+            // Update transform to show current slide
+            heroSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Update active dot
+            heroDots.forEach((dot, i) => {
+                if (i === currentIndex) {
+                    dot.classList.add('bg-green-600', 'active');
+                    dot.classList.remove('bg-gray-300');
+                } else {
+                    dot.classList.remove('bg-green-600', 'active');
+                    dot.classList.add('bg-gray-300');
+                }
+            });
+        }
+        
+        // Next button
+        heroNext.addEventListener('click', () => {
+            goToSlide(currentIndex + 1);
+        });
+        
+        // Previous button
+        heroPrev.addEventListener('click', () => {
+            goToSlide(currentIndex - 1);
+        });
+        
+        // Dot navigation
+        heroDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+            });
+        });
+        
+        // Auto slide every 6 seconds
+        let autoSlideInterval = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 6000);
+        
+        // Reset interval when user interacts
+        [heroNext, heroPrev, ...heroDots].forEach(control => {
+            control.addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(() => {
+                    goToSlide(currentIndex + 1);
+                }, 6000);
+            });
+        });
+        
+        // Handle touch/swipe for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        heroContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+        
+        heroContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, {passive: true});
+        
+        function handleSwipe() {
+            const swipeThreshold = 75;
+            
+            if (touchStartX - touchEndX > swipeThreshold) {
+                // Swipe left, go to next slide
+                goToSlide(currentIndex + 1);
+            } else if (touchEndX - touchStartX > swipeThreshold) {
+                // Swipe right, go to previous slide
+                goToSlide(currentIndex - 1);
+            }
+        }
+        
+        // Initialize first slide
+        goToSlide(0);
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
