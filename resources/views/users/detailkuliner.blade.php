@@ -23,7 +23,7 @@
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Main content area -->
             <div class="w-full lg:w-8/12">
-                <div class="mb-8 w-full">
+                <!-- <div class="mb-8 w-full"> -->
                     <!-- Gambar Utama -->
                     <div class="w-full h-96 mb-4 rounded-lg overflow-hidden">
                         <img src="{{ $kuliner->foto_kuliner }}" alt="{{ $kuliner->nama_kuliner }}" class="w-full h-full object-cover">
@@ -87,6 +87,27 @@
                         <p class="text-gray-700">Tempat bersih, pelayanan cepat, tapi agak ramai saat weekend.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Other Culinaries -->
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold mb-6">Other Culinaries</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($otherKuliner as $other)
+                    <a href="{{ route('kuliner.show', $other->id_kuliner) }}" class="block relative h-80 rounded-lg overflow-hidden shadow-md group">
+                        <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{ asset($other->foto_kuliner) }}');"></div>
+                        <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
+                            <h3 class="font-semibold text-lg text-white">{{ $other->nama_kuliner }}</h3>
+                            <div class="flex items-center mt-2 text-sm text-white">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9..."></path>
+                                </svg>
+                                {{ $other->lokasi_kuliner }}
+                            </div>
+                            <div class="mt-2 text-sm font-medium text-white">Visit</div>
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>

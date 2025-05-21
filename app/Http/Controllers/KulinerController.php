@@ -17,7 +17,7 @@ class KulinerController extends Controller
     // Ambil satu kuliner berdasarkan ID
     public function show($id)
     {
-        $kuliner = Kuliner::find($id);
+        $kuliner = Kuliner::where('id_kuliner', $id)->first();
 
         if (!$kuliner) {
             return response()->json(['message' => 'Kuliner tidak ditemukan'], 404);
@@ -28,7 +28,7 @@ class KulinerController extends Controller
                 ->limit(6)
                 ->get();
 
-        return response()->json($kuliner);
+        return view('users.detailkuliner', compact('kuliner', 'otherKuliner'));
     }
 
     public function listKuliner(Request $request)
@@ -50,15 +50,4 @@ class KulinerController extends Controller
     
         return view('users.kuliner', compact('kuliner', 'kategori'));
     }          
-
-    public function showDetail($id)
-    {
-        $kuliner = Kuliner::find($id);
-
-        if (!$kuliner) {
-            abort(404, 'Kuliner tidak ditemukan');
-        }
-
-        return view('users.detailkuliner', compact('kuliner'));
-    }
 }

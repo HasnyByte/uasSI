@@ -8,14 +8,12 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    // Tampilkan semua event
     public function index()
     {
-        $events = Event::all(); // Ambil semua event dari database
-        return view('admin.event', compact('events')); // Kirim ke blade
+        $events = Event::all();
+        return view('admin.event', compact('events'));
     }
 
-    // Tampilkan detail satu event
     public function show($id)
     {
         $event = Event::find($id);
@@ -27,7 +25,6 @@ class EventController extends Controller
         return response()->json($event);
     }
 
-    // Buat event baru (oleh admin)
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -36,10 +33,9 @@ class EventController extends Controller
             'lokasi_event' => 'required|string',
             'harga_tiket' => 'required|string',
             'location_id' => 'required|string',
-            'flyer_event' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'flyer_event' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Validasi di sini
         ]);
 
-        // Tangani upload flyer (jika ada)
         if ($request->hasFile('flyer_event')) {
             $file = $request->file('flyer_event');
             $filename = time() . '_' . $file->getClientOriginalName();
@@ -47,21 +43,17 @@ class EventController extends Controller
             $validated['flyer_event'] = 'flyers/' . $filename;
         }
 
-        // Tambahkan ID Event otomatis
-        $latest = \App\Models\Event::orderBy('id_event', 'desc')->first();
+        $latest = Event::orderBy('id_event', 'desc')->first();
         $newId = 'E' . str_pad(($latest ? intval(substr($latest->id_event, 1)) + 1 : 1), 5, '0', STR_PAD_LEFT);
         $validated['id_event'] = $newId;
 
-        // Tambahkan ID Admin dari session login atau sementara manual dulu
-        $validated['id_admin'] = 1; // ganti sesuai kebutuhan
+        $validated['id_admin'] = 1; // Ganti sesuai session login
 
-        // Simpan ke database
-        \App\Models\Event::create($validated);
+        Event::create($validated);
 
         return redirect()->route('admin.event.index')->with('success', 'Event berhasil ditambahkan!');
     }
 
-    // Update event
     public function update(Request $request, $id)
     {
         $event = Event::find($id);
@@ -70,12 +62,27 @@ class EventController extends Controller
             return response()->json(['message' => 'Event tidak ditemukan'], 404);
         }
 
-        $event->update($request->all());
+        $validated = $request->validate([
+            'nama_event' => 'sometimes|required|string|max:255',
+            'tanggal_event' => 'sometimes|required|string',
+            'lokasi_event' => 'sometimes|required|string',
+            'harga_tiket' => 'sometimes|required|string',
+            'location_id' => 'sometimes|required|string',
+            'flyer_event' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk update
+        ]);
 
-        return response()->json($event);
+        if ($request->hasFile('flyer_event')) {
+            $file = $request->file('flyer_event');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('flyers'), $filename);
+            $validated['flyer_event'] = 'flyers/' . $filename;
+        }
+
+        $event->update($validated);
+
+        return redirect()->route('admin.event.index')->with('success', 'Event berhasil diperbarui!');
     }
 
-    // Hapus event
     public function destroy($id)
     {
         $event = Event::find($id);
@@ -88,5 +95,4 @@ class EventController extends Controller
 
         return response()->json(['message' => 'Event berhasil dihapus']);
     }
-
 }

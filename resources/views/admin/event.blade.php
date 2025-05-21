@@ -94,7 +94,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="flyer_event" class="block text-sm font-medium text-gray-700">Flyer</label>
-                        <input type="file" id="flyer_event" name="flyer_event"
+                        <input type="file" id="flyer_event" name="flyer_event" accept=".jpg, .jpeg, .png"
                             class="w-full px-4 py-2 bg-gray-100 rounded border border-gray-300 text-sm">
                     </div>
 
