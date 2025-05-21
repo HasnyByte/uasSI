@@ -35,7 +35,9 @@ Route::get('/wisata/{id}', [DestinasiWisataController::class, 'show'])
     ->where('id', '[A-Z]{3}[0-9]+') // contoh: DBW001, DRK012
     ->name('wisata.show');
 Route::get('/kuliner', [KulinerController::class, 'listKuliner'])->name('kuliner');
-Route::get('/kuliner/{id}', [KulinerController::class, 'showDetail'])->name('detailkuliner');
+Route::get('/kuliner/{id}', [KulinerController::class, 'showDetail'])
+    ->where('id', '[A-Z]{3}[0-9]+') // contoh: DBW001, DRK012
+    ->name('kuliner.show');
 Route::get('/event', [UserEventController::class, 'index'])->name('event');
 Route::get('/event/{id}', [UserEventController::class, 'show'])->name('event.show');
 Route::get('/review/{id}/create', [ReviewController::class, 'create'])->name('review.create');

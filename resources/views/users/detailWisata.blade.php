@@ -27,7 +27,7 @@
         <div class="w-full lg:w-8/12">
             <!-- Main Image -->
             <div class="w-full h-96 mb-4 rounded-lg overflow-hidden">
-                <img src="{{ $wisata->foto_wisata }}" alt="{{ $wisata->nama }}" class="w-full h-full object-cover">
+                <img src="{{ $wisata->foto_wisata }}" alt="{{ $wisata->nama_wisata }}" class="w-full h-full object-cover">
             </div>
             
             <!-- Description -->
@@ -142,71 +142,21 @@
     <div class="mt-16">
         <h2 class="text-2xl font-bold mb-6">Other Destinations</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Destination 1 -->
-            <a href="{{ url('/wisata/pantai-lampuuk') }}" class="block relative h-80 rounded-lg overflow-hidden shadow-md group">
-                <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{ asset('images/lampuuk.png') }}');"></div>
-                <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
-                    <h3 class="font-semibold text-lg text-white">Pantai Lampuuk</h3>
-                    <div class="flex items-center mt-2">
-                        <span class="inline-flex items-center text-sm text-white mr-3">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"></path>
+            @foreach($otherDestinations as $other)
+                <a href="{{ route('wisata.show', $other->id_destinasi) }}" class="block relative h-80 rounded-lg overflow-hidden shadow-md group">
+                    <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{ asset($other->foto_wisata) }}');"></div>
+                    <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
+                        <h3 class="font-semibold text-lg text-white">{{ $other->nama_wisata }}</h3>
+                        <div class="flex items-center mt-2 text-sm text-white">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9..."></path>
                             </svg>
-                            Aceh Besar
-                        </span>
+                            {{ $other->lokasi_wisata }}
+                        </div>
+                        <div class="mt-2 text-sm font-medium text-white">Visit</div>
                     </div>
-                    <div class="mt-2 inline-flex items-center text-sm font-medium text-white transition">
-                        Visit
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            
-            <!-- Destination 2 -->
-            <a href="{{ url('/wisata/pucok-krueng-raba') }}" class="block relative h-80 rounded-lg overflow-hidden shadow-md group">
-                <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{ asset('images/pucok-krueng.png') }}');"></div>
-                <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
-                    <h3 class="font-semibold text-lg text-white">Pucok Krueng Raba</h3>
-                    <div class="flex items-center mt-2">
-                        <span class="inline-flex items-center text-sm text-white mr-3">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"></path>
-                            </svg>
-                            Aceh Besar
-                        </span>
-                    </div>
-                    <div class="mt-2 inline-flex items-center text-sm font-medium text-white transition">
-                        Visit
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            
-            <!-- Destination 3 -->
-            <a href="{{ url('/wisata/museum-aceh') }}" class="block relative h-80 rounded-lg overflow-hidden shadow-md group">
-                <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{ asset('images/museum-aceh.png') }}');"></div>
-                <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
-                    <h3 class="font-semibold text-lg text-white">Museum Aceh</h3>
-                    <div class="flex items-center mt-2">
-                        <span class="inline-flex items-center text-sm text-white mr-3">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"></path>
-                            </svg>
-                            Banda Aceh
-                        </span>
-                    </div>
-                    <div class="mt-2 inline-flex items-center text-sm font-medium text-white transition">
-                        Visit
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
+                </a>
+            @endforeach
         </div>
     </div>
 </div>

@@ -45,7 +45,12 @@ class DestinasiWisataController extends Controller
             abort(404); // Data tidak ditemukan
         }
 
-        return view('users.detailWisata', compact('wisata'));
+        $otherDestinations = DestinasiWisata::where('id_destinasi', '!=', $id)
+                        ->inRandomOrder()
+                        ->limit(6)
+                        ->get();
+
+        return view('users.detailWisata', compact('wisata', 'otherDestinations'));
     }
 
     /**

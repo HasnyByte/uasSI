@@ -9,6 +9,7 @@ class Kuliner extends Model
     protected $table = 'kuliner';
     protected $primaryKey = 'id_kuliner';
     public $timestamps = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'nama_kuliner',

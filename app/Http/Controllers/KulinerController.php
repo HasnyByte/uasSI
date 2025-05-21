@@ -23,6 +23,11 @@ class KulinerController extends Controller
             return response()->json(['message' => 'Kuliner tidak ditemukan'], 404);
         }
 
+        $otherKuliner = Kuliner::where('id_kuliner', '!=', $id)
+                ->inRandomOrder()
+                ->limit(6)
+                ->get();
+
         return response()->json($kuliner);
     }
 
@@ -41,9 +46,9 @@ class KulinerController extends Controller
             $query->where('nama_kuliner', 'like', '%' . $search . '%');
         }
     
-        $data_kuliner = $query->paginate(6);
+        $kuliner = $query->paginate(6);
     
-        return view('users.kuliner', compact('data_kuliner', 'kategori'));
+        return view('users.kuliner', compact('kuliner', 'kategori'));
     }          
 
     public function showDetail($id)
