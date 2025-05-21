@@ -70,7 +70,6 @@
                             <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105" style="background-image: url('{{ $gambarUrl }}');"></div>
                             <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
                                 <h3 class="font-semibold text-lg text-white">{{ $item->nama_wisata }}</h3>
-                                <p class="text-xs text-white">ID Debug: {{ $item->id_destinasi }}</p>
                                 <div class="mt-2 inline-flex items-center text-sm font-medium text-white transition">
                                     Visit
                                     <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

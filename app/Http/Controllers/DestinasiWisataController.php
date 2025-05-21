@@ -47,7 +47,7 @@ class DestinasiWisataController extends Controller
 
         $otherDestinations = DestinasiWisata::where('id_destinasi', '!=', $id)
                         ->inRandomOrder()
-                        ->limit(6)
+                        ->limit(3)
                         ->get();
 
         return view('users.detailWisata', compact('wisata', 'otherDestinations'));

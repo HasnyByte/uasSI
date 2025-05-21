@@ -34,15 +34,9 @@
             @foreach($events as $event)
             <div class="event-card bg-white rounded-lg shadow hover:shadow-lg transition p-4" data-name="{{ strtolower($event->nama_event) }}">
             <div class="w-full h-[160px] bg-gray-200 rounded-md mb-4 overflow-hidden">
-            @php
-                $src = \Illuminate\Support\Str::startsWith($event->flyer_event, ['http://', 'https://'])
-                    ? $event->flyer_event
-                    : asset('storage/flyer_event/' . $event->flyer_event);
-            @endphp
-                <img src="{{ $src }}" alt="Flyer Event"
+                <img src="{{ asset($event->flyer_event ?? 'images/default.jpg') }}" alt="Flyer Event"
                     class="w-full h-full object-cover rounded-md">
             </div>
-
                 <div class="space-y-1 text-sm text-gray-700">
                     <div class="flex items-center gap-2 text-[#2A933C] font-semibold">
                         <span class="material-icons text-base">event</span> {{ $event->nama_event }}
@@ -57,6 +51,13 @@
                         <span class="material-icons text-base">payments</span> {{$event->harga_tiket}}
                     </div>
                 </div>
+                <form action="{{ route('admin.event.destroy', $event->id_event) }}" method="POST" onsubmit="return confirm('Apakah kamu yakin ingin menghapus event ini?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="mt-3 bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded">
+                        Hapus
+                    </button>
+                </form>
             </div>
             @endforeach
         </div>

@@ -85,14 +85,15 @@ class EventController extends Controller
 
     public function destroy($id)
     {
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
 
-        if (!$event) {
-            return response()->json(['message' => 'Event tidak ditemukan'], 404);
+        // Hapus flyer jika ada
+        if ($event->flyer_event && \Storage::exists('public/flyer_event/' . $event->flyer_event)) {
+            \Storage::delete('public/flyer_event/' . $event->flyer_event);
         }
 
         $event->delete();
 
-        return response()->json(['message' => 'Event berhasil dihapus']);
+        return redirect()->route('admin.event.index')->with('success', 'Event berhasil dihapus.');
     }
 }

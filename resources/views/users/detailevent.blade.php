@@ -35,7 +35,7 @@
             <div class="mt-8 flex flex-col lg:flex-row lg:space-x-8">
                 <!-- Gambar -->
                 <div class="w-full lg:w-2/3">
-                    <img src="{{ asset('storage/flyers/' . $event->flyer_event) }}"
+                    <img src="{{ asset($event->flyer_event ?? 'images/default.jpg') }}"
                          class="rounded-lg shadow-lg w-full h-[550px] object-cover object-center">
                 </div>
 
@@ -69,9 +69,9 @@
                     @foreach ($otherEvents as $other)
                         <a href="{{ route('event.show', $other->id_event) }}" class="block relative h-80 rounded-lg overflow-hidden shadow-md group">
                             <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-                                 style="background-image: url('{{ asset($event->flyer_event ?? 'images/default.jpg') }}');"></div>
+                                 style="background-image: url('{{ asset($other->flyer_event ?? 'images/default.jpg') }}');"></div>
                             <div class="absolute inset-0 z-10 bg-black/40 flex flex-col justify-end p-4">
-                                <h3 class="font-semibold text-lg text-white">{{ $other->judul_event }}</h3>
+                                <h3 class="font-semibold text-lg text-white">{{ $other->nama_event }}</h3>
                                 <div class="flex items-center mt-2 text-sm text-white">
                                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"></path>

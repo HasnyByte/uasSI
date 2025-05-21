@@ -25,7 +25,7 @@ class KulinerController extends Controller
 
         $otherKuliner = Kuliner::where('id_kuliner', '!=', $id)
                 ->inRandomOrder()
-                ->limit(6)
+                ->limit(3)
                 ->get();
 
         return view('users.detailkuliner', compact('kuliner', 'otherKuliner'));

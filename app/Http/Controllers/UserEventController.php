@@ -24,8 +24,12 @@ class UserEventController extends Controller
 
     public function show($id)
     {
-        $event = Event::where('id_event', $id)->firstOrFail();
-        $otherEvents = Event::where('id_event', '!=', $id)->latest()->take(3)->get();
+        $event = Event::where('id_event', $id)->first();
+
+        $otherEvents = Event::where('id_event', '!=', $id)
+                ->latest()
+                ->limit(3)
+                ->get();
 
         return view('users.detailEvent', compact('event', 'otherEvents'));
     }
