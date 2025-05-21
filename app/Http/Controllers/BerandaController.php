@@ -10,18 +10,29 @@ class BerandaController extends Controller
 {
     public function index()
     {
-        // Destinasi dengan rating tertinggi
-        $topDestinasi = DestinasiWisata::withAvg('reviews', 'rating')
-            ->orderByDesc('reviews_avg_rating')
-            ->take(16)
+        // Ambil semua wisata dengan rating rata-rata, urut dari yang tertinggi
+        $wisataWithRating = DestinasiWisata::withAvg('review', 'rating')
+            ->orderByDesc('review_avg_rating')
             ->get();
 
-        // Kuliner dengan rating tertinggi
-        $topKuliner = Kuliner::withAvg('reviews', 'rating')
-            ->orderByDesc('reviews_avg_rating')
-            ->take(16)
+        // Ambil wisata rating tertinggi untuk hero
+        $heroWisata = $wisataWithRating->first();
+
+        // Ambil wisata populer selain hero (misal tampilkan 4 wisata)
+        $popularWisata = $wisataWithRating->skip(1)->take(4);
+
+        // Ambil semua kuliner dengan rating rata-rata, urut dari yang tertinggi
+        $kulinerWithRating = Kuliner::withAvg('review', 'rating')
+            ->orderByDesc('review_avg_rating')
             ->get();
 
-        return view('beranda', compact('topDestinasi', 'topKuliner'));
+        // Ambil kuliner populer (misal tampilkan 4 wisata)
+        $popularKuliner = $kulinerWithRating->take(4);
+
+        return view('users.home', [
+            'heroWisata' => $heroWisata,
+            'popularWisata' => $popularWisata,
+            'popularKuliner' => $popularKuliner,
+        ]);
     }
 }

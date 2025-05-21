@@ -24,23 +24,22 @@
     <div class="bg-white rounded-lg shadow-sm overflow-hidden">
         <div class="flex flex-col md:flex-row">
             <div class="md:w-1/2">
-                <img src="{{ asset('images/museum-tsunami.png') }}" alt="Museum Tsunami Banda Aceh" class="w-full h-[350px] object-cover">
+                <img src="{{ asset('storage/' . $heroWisata->foto_wisata) }}" alt="{{ $heroWisata->nama_wisata }}" class="w-full h-[350px] object-cover">
             </div>
             <div class="md:w-1/2 p-6">
-                <h1 class="text-3xl font-bold text-green-600 mb-2 py-6">Museum Tsunami Banda Aceh: Monumen Peringatan dan Edukasi</h1>
+                <h1 class="text-3xl font-bold text-green-600 mb-2 py-6">{{ $heroWisata->nama_wisata }}</h1>
                 <p class="text-gray-700 mb-4 mr-8">
-                    Museum Tsunami Banda Aceh adalah monumen peringatan yang dibangun untuk mengenang tragedi tsunami dahsyat yang melanda Aceh pada 26 Desember 2004. Dirancang tidak hanya sebagai monumen peringatan yang mengharukan untuk mengenang korban, tetapi juga sebagai pusat edukasi.
+                    {{ $heroWisata->deskripsi_wisata }}
                 </p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Popular Destinations-->
+<!-- Popular Destinations -->
 <div class="container mx-auto px-10 py-20">
     <div class="flex items-center justify-between mb-4">
         <h2 class="text-lg font-semibold text-gray-600">Tempat Wisata</h2>
-        <span></span>
     </div>
     <div class="flex justify-between items-center mb-6 py-0">
         <h3 class="text-2xl font-bold text-green-600">Destinasi Populer</h3>
@@ -50,199 +49,64 @@
         </a>
     </div>
 
-    <div class="relative">
-        <div class="overflow-x-scroll pb-6 -mx-8 px-15 scroll-smooth scrollbar-hide" id="destination-scroll">
-            <div class="flex space-x-6 scroll-snap-x">
-                <!-- Destination Card 1 -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0 scroll-snap-center">
-                    <img src="{{ asset('images/lampuuk.png') }}" alt="Pantai Lampuuk" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold text-green-600">Pantai Lampuuk</h4>
-                        <div class="flex items-center text-gray-500 mt-2">
-                            <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
-                            <span>Aceh Besar</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-3">
-                            <div class="flex items-center">
-                                <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 ml-50 text-yellow-400">
-                                <span class="ml-1 text-gray-600">4.5</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(720)</span>
-                        </div>
-                    </div>
+    <div class="flex space-x-6 overflow-x-scroll pb-6 scrollbar-hide">
+        @foreach ($popularWisata as $item)
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0">
+            <img src="{{ asset('storage/' . $item->foto_wisata) }}" alt="{{ $item->nama_wisata }}" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h4 class="text-lg font-semibold text-green-600">{{ $item->nama_wisata }}</h4>
+                <div class="flex items-center text-gray-500 mt-2">
+                    <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
+                    <span>{{ $item->lokasi_wisata }}</span>
                 </div>
-
-                <!-- Destination Card 2 -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0 scroll-snap-center">
-                    <img src="{{ asset('images/pucok-krueng.png') }}" alt="Pucok Krueng Raba" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold text-green-600">Pucok Krueng Raba</h4>
-                        <div class="flex items-center text-gray-500 mt-2">
-                            <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
-                            <span>Aceh Besar</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-3">
-                            <div class="flex items-center">
-                                <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 ml-50 text-yellow-400">
-                                <span class="ml-1 text-gray-600">4.6</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(652)</span>
-                        </div>
+                <div class="flex items-center justify-between mt-3">
+                    <div class="flex items-center">
+                        <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 text-yellow-400">
+                        <span class="ml-1 text-gray-600">{{ number_format($item->review_avg_rating, 1) }}</span>
                     </div>
-                </div>
-
-                <!-- Destination Card 3 -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0 scroll-snap-center">
-                    <img src="{{ asset('images/museum-aceh.png') }}" alt="Museum Aceh" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold text-green-600">Museum Aceh</h4>
-                        <div class="flex items-center text-gray-500 mt-2">
-                            <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
-                            <span>Banda Aceh</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-3">
-                            <div class="flex items-center">
-                                <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 ml-50 text-yellow-400">
-                                <span class="ml-1 text-gray-600">4.7</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(510)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Destination Card 4 (Extra) -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0 scroll-snap-center">
-                    <img src="{{ asset('images/peukan.png') }}" alt="Air Terjun Peukan Biluy" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold text-green-600">Air Terjun Peukan Biluy</h4>
-                        <div class="flex items-center text-gray-500 mt-2">
-                            <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
-                            <span>Banda Aceh</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-3">
-                            <div class="flex items-center">
-                                <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 ml-50 text-yellow-400">
-                                <span class="ml-1 text-gray-600">4.9</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(825)</span>
-                        </div>
-                    </div>
+                    <span class="text-gray-500 text-sm">({{ $item->review->count() }})</span>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Pagination Dots -->
-    <div class="flex justify-center mt-4">
-        <button class="h-2 w-2 mx-1 rounded-full bg-green-600 destination-dot active" data-index="0"></button>
-        <button class="h-2 w-2 mx-1 rounded-full bg-gray-300 destination-dot" data-index="1"></button>
-        <button class="h-2 w-2 mx-1 rounded-full bg-gray-300 destination-dot" data-index="2"></button>
-        <button class="h-2 w-2 mx-1 rounded-full bg-gray-300 destination-dot" data-index="3"></button>
+        @endforeach
     </div>
 </div>
 
+
+
 <!-- Culinary Recommendations -->
-<div class="container mx-auto px-10 py-10">
-    <div class="flex items-center justify-between mb-6">
-        <h2 class="text-lg font-semibold text-gray-600">Wisata Kuliner</h2>
-        <span></span>
+<div class="container mx-auto px-10 py-20">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-semibold text-gray-600">Tempat Kuliner</h2>
     </div>
-    <div class="flex justify-between items-center mb-6">
-        <h3 class="text-2xl font-bold text-green-600">Rekomendasi Kuliner</h3>
+    <div class="flex justify-between items-center mb-6 py-0">
+        <h3 class="text-2xl font-bold text-green-600">Kuliner Populer</h3>
         <a href="{{ route('kuliner') }}" class="text-green-600 flex items-center">
             Lihat semua
-            <img src="{{ asset('images/right-line.svg') }}" alt="See All" class="ml-1 w-6 h-6">
+            <img src="{{ asset('images/right-line.svg') }}" alt="See All" class="ml-1 w-4 h-4">
         </a>
     </div>
 
-    <div class="relative">
-        <div class="overflow-x-scroll pb-6 -mx-8 px-15 scroll-smooth scrollbar-hide" id="culinary-scroll">
-            <div class="flex space-x-6 scroll-snap-x">
-                <!-- Food Card 1 -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0 scroll-snap-center">
-                    <img src="{{ asset('images/razali.png') }}" alt="Mie Aceh Razali" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold text-green-600">Mie Aceh Razali</h4>
-                        <div class="flex items-center text-gray-500 mt-2">
-                            <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
-                            <span>Banda Aceh</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-3">
-                            <div class="flex items-center">
-                                <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 ml-50 text-yellow-400">
-                                <span class="ml-1 text-gray-600">4.8</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(101)</span>
-                        </div>
-                    </div>
+    <div class="flex space-x-6 overflow-x-scroll pb-6 scrollbar-hide">
+        @foreach ($popularKuliner as $item)
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0">
+            <img src="{{ asset('storage/' . $item->foto_kuliner) }}" alt="{{ $item->nama_kuliner }}" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h4 class="text-lg font-semibold text-green-600">{{ $item->nama_kuliner }}</h4>
+                <div class="flex items-center text-gray-500 mt-2">
+                    <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
+                    <span>{{ $item->lokasi_kuliner }}</span>
                 </div>
-
-                <!-- Food Card 2 -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0 scroll-snap-center">
-                    <img src="{{ asset('images/groh.png') }}" alt="Rujak U Groh Bakoy" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold text-green-600">Rujak U Groh Bakoy</h4>
-                        <div class="flex items-center text-gray-500 mt-2">
-                            <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
-                            <span>Aceh Besar</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-3">
-                            <div class="flex items-center">
-                                <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 ml-50 text-yellow-400">
-                                <span class="ml-1 text-gray-600">4.7</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(175)</span>
-                        </div>
+                <div class="flex items-center justify-between mt-3">
+                    <div class="flex items-center">
+                        <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 text-yellow-400">
+                        <span class="ml-1 text-gray-600">{{ number_format($item->review_avg_rating, 1) }}</span>
                     </div>
-                </div>
-
-                <!-- Food Card 3 -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0 scroll-snap-center">
-                    <img src="{{ asset('images/sie.png') }}" alt="Sie Reuboh Cut Bit" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold text-green-600">Sie Reuboh Cut Bit</h4>
-                        <div class="flex items-center text-gray-500 mt-2">
-                            <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
-                            <span>Aceh Besar</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-3">
-                            <div class="flex items-center">
-                                <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 ml-50 text-yellow-400">
-                                <span class="ml-1 text-gray-600">4.5</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(105)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Food Card 4 (Extra) -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden w-80 flex-shrink-0 scroll-snap-center">
-                    <img src="{{ asset('images/beulangong.png') }}" alt="Kuah Beulangong" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h4 class="text-lg font-semibold text-green-600">Kuah Beulangong</h4>
-                        <div class="flex items-center text-gray-500 mt-2">
-                            <img src="{{ asset('images/g-maps.svg') }}" alt="Location" class="w-6 h-6 mr-2">
-                            <span>Banda Aceh</span>
-                        </div>
-                        <div class="flex items-center justify-between mt-3">
-                            <div class="flex items-center">
-                                <img src="{{ asset('images/star.svg') }}" alt="Rating" class="w-6 h-6 ml-50 text-yellow-400">
-                                <span class="ml-1 text-gray-600">4.6</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(782)</span>
-                        </div>
-                    </div>
+                    <span class="text-gray-500 text-sm">({{ $item->review->count() }})</span>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Pagination Dots -->
-    <div class="flex justify-center mt-4">
-        <button class="h-2 w-2 mx-1 rounded-full bg-green-600 culinary-dot active" data-index="0"></button>
-        <button class="h-2 w-2 mx-1 rounded-full bg-gray-300 culinary-dot" data-index="1"></button>
-        <button class="h-2 w-2 mx-1 rounded-full bg-gray-300 culinary-dot" data-index="2"></button>
-        <button class="h-2 w-2 mx-1 rounded-full bg-gray-300 culinary-dot" data-index="3"></button>
+        @endforeach
     </div>
 </div>
 

@@ -54,31 +54,24 @@
 
                 <!-- Ulasan -->
                 <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-semibold mb-4">Ulasan Pengunjung</h3>
-
-                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                        <div class="flex justify-between items-start">
-                            <h4 class="font-medium">Budi Santoso</h4>
-                            <div class="flex items-center">
-                                <span class="font-bold mr-1">5</span>
-                                <span class="text-yellow-400">★</span>
+                    @forelse($kuliner->review as $review)
+                        <h3 class="text-lg font-semibold mb-4">Ulasan Pengunjung</h3>             
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-medium">{{ $review->user->nama_user ?? 'Anonim' }}</h4>
+                                <div class="flex items-center">
+                                    <span class="font-bold mr-1">{{ number_format($review->rating, 1) }}</span>
+                                    <span class="text-yellow-400">★</span>
+                                </div>
                             </div>
+                            <div class="text-sm text-gray-500 mb-2">{{ \Carbon\Carbon::parse($review->tanggal_review)->format('d/m/Y') }}</div>
+                            <p class="text-gray-700">{{ $review->komentar }}</p>
                         </div>
-                        <div class="text-sm text-gray-500 mb-2">03/05/2025</div>
-                        <p class="text-gray-700">Rasa sate yang autentik dan kuahnya sangat kental. Highly recommended!</p>
-                    </div>
-
-                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                        <div class="flex justify-between items-start">
-                            <h4 class="font-medium">Siti Rahma</h4>
-                            <div class="flex items-center">
-                                <span class="font-bold mr-1">4</span>
-                                <span class="text-yellow-400">★</span>
-                            </div>
+                    @empty
+                        <div class="bg-gray-50 p-4 rounded-lg text-center text-gray-500">
+                            Belum ada ulasan untuk kuliner ini.
                         </div>
-                        <div class="text-sm text-gray-500 mb-2">30/04/2025</div>
-                        <p class="text-gray-700">Tempat bersih, pelayanan cepat, tapi agak ramai saat weekend.</p>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -104,6 +97,7 @@
             </div>
         </div>
     </div>
+
     <!-- Review Modal -->
     <div id="reviewModal" class="fixed inset-0 z-50 bg-gradient-to-b from-black/20 via-black/30 to-black/20 flex items-center justify-center hidden">
         <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">

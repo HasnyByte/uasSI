@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\EventController;
@@ -29,7 +30,7 @@ Route::get('/adminReview', fn() => view('admin.review'))->name('review');
 | User Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/home', fn() => view('users.home'))->name('home');
+Route::get('/home', [BerandaController::class, 'index'])->name('home');
 Route::get('/wisata', [DestinasiWisataController::class, 'listWisata'])->name('wisata');
 Route::get('/wisata/{id}', [DestinasiWisataController::class, 'show'])
     ->where('id', '[A-Z]{3}[0-9]+') // contoh: DBW001, DRK012

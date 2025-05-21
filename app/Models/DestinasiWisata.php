@@ -21,7 +21,7 @@ class DestinasiWisata extends Model
     ];
 
     // Relasi ke Review (satu destinasi bisa punya banyak review)
-    public function reviews()
+    public function review()
     {
         return $this->hasMany(Review::class, 'id_destinasi', 'id_destinasi');
     }

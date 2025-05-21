@@ -20,7 +20,7 @@ class Kuliner extends Model
     ];
 
     // Relasi ke Review (satu kuliner bisa punya banyak review)
-    public function reviews()
+    public function review()
     {
         return $this->hasMany(Review::class, 'id_kuliner', 'id_kuliner');
     }
