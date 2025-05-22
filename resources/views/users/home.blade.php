@@ -1,20 +1,12 @@
 @extends('layouts.users')
 
 @section('content')
-<!-- Location and Search Bar -->
+<!-- Location Display Only (No Search, No Filter) -->
 <div class="container mx-auto px-10 py-10">
     <div class="flex flex-col md:flex-row justify-between items-center mb-6">
         <div class="flex items-center mb-4 md:mb-0">
             <img src="{{ asset('images/maps.svg') }}" alt="Location" class="w-5 h-5 mr-2">
-            <span class="font-medium">Banda Aceh, Aceh</span>
-            <img src="{{ asset('images/Options.svg') }}" alt="Dropdown" class="w-4 h-4 ml-1">
-        </div>
-        <div class="relative w-full md:w-1/3">
-            <input type="text" placeholder="Search for anything..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-            <img src="{{ asset('images/Search.svg') }}" alt="Search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4">
-            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-green-600 text-white p-1 rounded-md">
-                <img src="{{ asset('images/Filter.svg') }}" alt="Filter" class="w-4 h-4">
-            </button>
+            <span class="font-medium">Banda Aceh, Aceh Besar</span>
         </div>
     </div>
 </div>

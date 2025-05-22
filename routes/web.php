@@ -24,6 +24,8 @@ Route::get('/adminPengguna', [UsersController::class, 'index'])->name('pengguna'
 Route::get('/adminEvent', [EventController::class, 'index'])->name('admin.event.index');
 Route::post('/adminEvent', [EventController::class, 'store'])->name('admin.event.store');
 Route::get('/adminReview', fn() => view('admin.review'))->name('review');
+Route::get('/adminReview', [ReviewController::class, 'adminIndex'])->name('review'); // Halaman admin review
+Route::delete('/adminReview/{id}', [ReviewController::class, 'destroy'])->name('review.destroy'); // Hapus review
 
 /*
 |--------------------------------------------------------------------------
