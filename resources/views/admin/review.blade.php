@@ -20,7 +20,7 @@
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-xl font-semibold text-[#2A933C]">Review dan Rating</h3>
 
-                <div class="relative w-full max-w-xs">
+                <!-- <div class="relative w-full max-w-xs">
                     <span class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                         search
                     </span>
@@ -34,7 +34,7 @@
                             onchange="this.form.submit()"
                         >
                     </form>
-                </div>
+                </div> -->
             </div>
 
             @if($reviews->count() > 0)
