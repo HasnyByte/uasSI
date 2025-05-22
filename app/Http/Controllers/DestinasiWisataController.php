@@ -9,13 +9,21 @@ use Illuminate\Http\Request;
 
 class DestinasiWisataController extends Controller
 {
-    // Mapping kategori (bisa juga dijadikan konstanta)
+    // Mapping kategori - mendukung kedua format (nama dan kode)
     private const KATEGORI_MAP = [
+        // Format nama (untuk API compatibility)
         'budaya'    => 'DBW',
         'rekreasi'  => 'DRK',
         'alam'      => 'DAT',
         'olahraga'  => 'DOA',
         'hiburan'   => 'DBH',
+        
+        // Format kode langsung (untuk frontend filter)
+        'DBW' => 'DBW',
+        'DRK' => 'DRK', 
+        'DAT' => 'DAT',
+        'DOA' => 'DOA',
+        'DBH' => 'DBH',
     ];
 
     /**
