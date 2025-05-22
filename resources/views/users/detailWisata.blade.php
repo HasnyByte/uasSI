@@ -167,7 +167,7 @@
 
             <!-- Komentar -->
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm mb-1" for="komentar">Komentar (opsional)</label>
+                <label class="block text-gray-700 text-sm mb-1" for="komentar">Komentar</label>
                 <textarea name="komentar" id="komentar" rows="3" class="w-full border rounded p-2"></textarea>
             </div>
 

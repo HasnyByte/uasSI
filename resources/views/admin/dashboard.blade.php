@@ -27,7 +27,7 @@
         <div class="bg-[#777E90] text-white rounded-lg p-6 shadow flex flex-col justify-between">
             <div>
                 <div class="text-3xl font-bold mb-2">Total Rating</div>
-                <div class="text-3xl font-bold">40</div> {{-- $totalRating --}}
+                <div class="text-3xl font-bold">{{ $totalReview }}</div>
             </div>
             <div class="text-[#ffffff] text-right">
                 <span class="material-icons text-6xl">category</span>

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Review;
 use Carbon\Carbon;
 
 class AdminController extends Controller
@@ -43,8 +44,9 @@ class AdminController extends Controller
 
         $totalPengguna = User::count();
         $totalEvent = Event::count();
+        $totalReview = Review::count();
 
-        return view('admin.dashboard', compact('totalPengguna', 'totalEvent'));
+        return view('admin.dashboard', compact('totalPengguna', 'totalEvent', 'totalReview'));
     }
 
     // Proses logout admin (jika pakai Sanctum/token)
